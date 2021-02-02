@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  shelf_life: 1
+  storage_type: MyString
+  user: one
+  category: one
+
+two:
+  name: MyString
+  shelf_life: 1
+  storage_type: MyString
+  user: two
+  category: two

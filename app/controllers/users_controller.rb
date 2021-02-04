@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
+    if @user.update(params.require(:user).permit(:username, :password, :dark_mode))
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     end
 
     def user_params 
-      params.require(:user).permit( :username, :password, :dark_mode)
+      params.require(:user).permit( :username, :password)
     end
 
 end

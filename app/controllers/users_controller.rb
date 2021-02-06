@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @token = encode({id: @user.id})
+      @pantry = Pantry.create(user_id: @user.id)
       render json: {
         user: @user.attributes.except("password_digest"),
         token: @token

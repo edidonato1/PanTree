@@ -9,6 +9,4 @@ Rails.application.routes.draw do
     resources :lists
   end
 
-  resources :pantries, only: :show
-
 end

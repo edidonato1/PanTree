@@ -41,6 +41,6 @@ class PantriesController < ApplicationController
     end
 
     def pantry_params 
-      params.require(:pantry).permit( :status, :time_left, :food_id)
+      params.require(:pantry).permit(:user_id)
     end
 end

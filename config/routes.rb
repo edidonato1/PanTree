@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources :lists
   end
 
+  resources :foods 
+
 end

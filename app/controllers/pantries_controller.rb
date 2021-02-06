@@ -1,5 +1,5 @@
 class PantriesController < ApplicationController
-  before_action :set_pantry, only: [:show, :update ]
+  before_action :set_pantry, only: [:show, :update, :add_grocery ]
 
 
   def index
@@ -10,7 +10,7 @@ class PantriesController < ApplicationController
 
 
   def show
-    render json: @pantry
+    render json: @pantry, include: :groceries
   end
 
   def update 
@@ -19,6 +19,13 @@ class PantriesController < ApplicationController
     else
       render json: @pantry.errors, status: :unprocessable_entity
     end
+  end
+
+  def add_grocery 
+    @grocery = Grocery.find(params[:id])
+    @pantry.groceries << @grocery
+    
+    render json: @pantry, include: :groceries
   end
 
 

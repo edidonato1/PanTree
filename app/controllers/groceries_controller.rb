@@ -10,7 +10,9 @@ class GroceriesController < ApplicationController
 
 
   def show
-    render json: @grocery
+    @food = Food.find(@grocery.food_id)
+
+    render json: [@grocery, @food]
   end
 
   def update 

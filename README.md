@@ -2,14 +2,13 @@
 *a smart grocery list application that helps you keep track of your purchases and reminds you when your food has expired*
 
 - [Overview](#overview)
-- [Goals](#goals)
+- [Features](#features)
 - [Libraries and Dependencies](#libraries-and-dependencies)
 - [Client (Front End)](#client-front-end)
   - [Wireframes](#wireframes)
   - [Component Tree](#component-tree)
   - [Component Hierarchy](#component-hierarchy)
   - [Component Breakdown](#component-breakdown)
-  - [Time Estimates](#time-estimates)
 - [Server (Back End)](#server-back-end)
   - [ERD Model](#erd-model)
 - [Code Issues & Resolutions](#code-issues--resolutions)
@@ -120,29 +119,13 @@ src
 ```
 
 
-<!-- 
-#### Time Estimates
-
-| Task                | Priority | Estimated Time |  Actual Time  |
-| ------------------- | :------: | :------------: |  :---------:  |
-| add models          |    H     |     2 hrs      |      1 hr     |
-| build routes        |    H     |     2 hrs      |      2 hrs    |
-| create associations |    H     |     6 hrs      |      4 hrs    |
-| seed data           |    L     |     2 hrs      |     .5 hrs   |
-| add React services  |    H     |     2 hrs      |      1 hr      |
-| build frontend skeleton |    H     |     3 hrs      |      2 hrs    |
-| build frontend forms|    H     |     5 hrs      |      5 hrs      |
-| test frontend CRUD  |    M     |     3 hrs      |     7 hrs      |
-| streamline functionality |    H     |     6 hrs      |      18 hrs      |
-| CSS styling         |    H     |     16 hrs      |      18 hrs      |
-| post-MVP - collaborations |   L   |     10    |     n/a     |
-| TOTAL               |          |     57 hrs      |      58.5 hrs       | -->
-
 
 
 <br>
 
 ### Server (Back End)
+
+## ERD Model 
 
 <!-- #### ERD Model
 [CoLab ERD](https://github.com/edidonato1/CoLab/blob/develop/images/CoLab_ERD.png) -->

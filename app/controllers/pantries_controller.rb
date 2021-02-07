@@ -34,6 +34,17 @@ class PantriesController < ApplicationController
     render json: @pantry, include: :groceries
   end
 
+  def remove_grocery
+    @grocery = Grocery.find(params[:id])
+    @pantry = Pantry.find(params[:pantry_id])
+    
+    @pantry.groceries.delete(@grocery)
+
+    @grocery.destroy
+
+    render json: @pantry
+  end
+
 
   def create
     @pantry = Pantry.new(pantry_params)

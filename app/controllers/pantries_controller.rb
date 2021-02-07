@@ -1,5 +1,5 @@
 class PantriesController < ApplicationController
-  before_action :set_pantry, only: [:show, :update, :add_grocery ]
+  before_action :set_pantry, only: [:show, :update]
 
 
   def index
@@ -23,6 +23,7 @@ class PantriesController < ApplicationController
 
   def add_grocery 
     @grocery = Grocery.find(params[:id])
+    @pantry = Pantry.find(params[:pantry_id])
     @food = Food.find(@grocery.food_id)
     @grocery.toss_date = Time.now + (@food.shelf_life * 86400)
     @grocery.time_left = (@grocery.toss_date - Time.now) / 86400

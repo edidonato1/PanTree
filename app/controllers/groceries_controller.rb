@@ -12,7 +12,9 @@ class GroceriesController < ApplicationController
   def show
     @food = Food.find(@grocery.food_id)
 
-    render json: [@grocery, @food]
+    render json: [@grocery, @food] 
+    # grocery is a temporary "instance" of grocery.. 
+    # rendering both gives access to information about food grocery is associated with, without having to search foods on the client side
   end
 
   def update 

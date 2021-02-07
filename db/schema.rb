@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_214758) do
+ActiveRecord::Schema.define(version: 2021_02_07_164356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_02_06_214758) do
     t.integer "shelf_life"
     t.string "storage_type"
     t.bigint "user_id"
-    t.bigint "category_id"
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_foods_on_category_id"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2021_02_06_214758) do
     t.bigint "pantry_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "time_added"
+    t.datetime "toss_date"
     t.index ["food_id"], name: "index_groceries_on_food_id"
     t.index ["list_id"], name: "index_groceries_on_list_id"
     t.index ["pantry_id"], name: "index_groceries_on_pantry_id"

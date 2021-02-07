@@ -24,6 +24,8 @@ class PantriesController < ApplicationController
   def add_grocery 
     @grocery = Grocery.find(params[:id])
     @pantry = Pantry.find(params[:pantry_id])
+    @list = List.find(@grocery.list_id)
+    @list.groceries.delete(@grocery)
     @food = Food.find(@grocery.food_id)
     @grocery.toss_date = Time.now + (@food.shelf_life * 86400)
     @grocery.time_left = (@grocery.toss_date - Time.now) / 86400

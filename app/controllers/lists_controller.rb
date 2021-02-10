@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy ]
+  # before_action :authorize_request
 # don'g forget to authorize request for create method once endpoints have been tested
 
   def index
@@ -23,10 +24,14 @@ class ListsController < ApplicationController
 
   def add_grocery
     @list = List.find(params[:list_id])
-    @grocery = Grocery.find(params[:id]) 
-    @list.groceries << @grocery
-
-    render json: @list, include: :groceries
+    # @grocery = Grocery.find(params[:id]) 
+    @grocery = Grocery.new(grocery_params)
+    if @grocery.save
+      @list.groceries << @grocery
+      render json: @list, include: :groceries
+    else
+      render json: @grocery.errors, status: :unprocessable_entity
+    end
   end
 
 
@@ -40,6 +45,9 @@ class ListsController < ApplicationController
     end
   end
 
+  def destroy
+    @list.destroy
+  end
 
 
   private
@@ -50,5 +58,9 @@ class ListsController < ApplicationController
 
     def list_params 
       params.require(:list).permit(:user_id)
+    end
+
+    def grocery_params 
+      params.require(:grocery).permit( :status, :time_left, :food_id)
     end
 end

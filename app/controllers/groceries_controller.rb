@@ -1,5 +1,6 @@
 class GroceriesController < ApplicationController
   before_action :set_grocery, only: [:show, :update, :destroy ]
+  # before_action :authorize_request
 
 
   def index
@@ -36,6 +37,9 @@ class GroceriesController < ApplicationController
     end
   end
 
+  def destroy
+    @grocery.destroy
+  end
 
 
   private

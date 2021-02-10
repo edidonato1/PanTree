@@ -2,7 +2,6 @@ class GroceriesController < ApplicationController
   before_action :set_grocery, only: [:show, :update, :destroy ]
   # before_action :authorize_request
 
-
   def index
     @grocery = Grocery.all
 
@@ -14,7 +13,7 @@ class GroceriesController < ApplicationController
     @food = Food.find(@grocery.food_id)
 
     render json: [@grocery, @food] 
-    # grocery is a temporary "instance" of grocery.. 
+    # grocery is a temporary "instance" of food.. 
     # rendering both gives access to information about food grocery is associated with, without having to search foods on the client side
   end
 
@@ -27,16 +26,6 @@ class GroceriesController < ApplicationController
   end
 
 
-  def create
-    @grocery = Grocery.new(grocery_params)
-
-    if @grocery.save
-      render json: @grocery
-    else
-      render json: @grocery.errors, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @grocery.destroy
   end
@@ -48,7 +37,4 @@ class GroceriesController < ApplicationController
       @grocery = Grocery.find(params[:id])
     end
 
-    def grocery_params 
-      params.require(:grocery).permit( :status, :time_left, :food_id)
-    end
 end

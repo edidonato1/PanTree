@@ -1,7 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy ]
   # before_action :authorize_request
-# don'g forget to authorize request for create method once endpoints have been tested
 
   def index
     @list = List.all

@@ -34,6 +34,9 @@ class FoodsController < ApplicationController
     end
   end
 
+  def destroy 
+    @food.destroy
+  end
 
 
   private

@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
-import {getAllCategories} from './services/categories';
+import {getOneFood} from './services/foods';
 
 function App() {
 
 
   useEffect(() => {
-    const fetchCategries = async () => {
-      const categoryData = await getAllCategories();
-      console.log(categoryData)
+    const fetchFoods = async () => {
+    try {
+      const foodData = await getOneFood('1');
+      console.log(foodData)
+      } catch (error) {
+          console.log(error)
+      }
     }
-    fetchCategries();
+    fetchFoods();
   }, [])
   
 

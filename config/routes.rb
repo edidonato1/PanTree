@@ -24,4 +24,7 @@ Rails.application.routes.draw do
 
   resources :lists
 
+  get '/categories', to: 'categories#index'
+  get '/categories/:id', to: 'categories#show'
+
 end

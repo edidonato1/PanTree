@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
 
 
   def show
-    render json: @category
+    render json: @category, include: :foods
   end
 
 

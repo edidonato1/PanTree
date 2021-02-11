@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :update ]
+  before_action :authorize_request, only: [:show, :create, :update, :destroy]
 
 
   def index
@@ -24,6 +25,7 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
+    @food.user_id = @current_user.id
 
     if @food.save
       render json: @food

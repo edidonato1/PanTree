@@ -1,6 +1,6 @@
 class GroceriesController < ApplicationController
   before_action :set_grocery, only: [:show, :update, :destroy ]
-  # before_action :authorize_request
+  
 
   def index
     @grocery = Grocery.all
@@ -11,6 +11,7 @@ class GroceriesController < ApplicationController
 
   def show
     @food = Food.find(@grocery.food_id)
+    @food.user_id = @current_user.id
 
     render json: [@grocery, @food] 
     # grocery is a temporary "instance" of food.. 

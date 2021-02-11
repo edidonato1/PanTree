@@ -23,7 +23,6 @@ class ListsController < ApplicationController
 
   def add_grocery
     @list = List.find(params[:list_id])
-    # @grocery = Grocery.find(params[:id]) 
     @grocery = Grocery.new(grocery_params)
     if @grocery.save
       @list.groceries << @grocery
@@ -31,6 +30,23 @@ class ListsController < ApplicationController
     else
       render json: @grocery.errors, status: :unprocessable_entity
     end
+  end
+
+  def move_grocery 
+    @list = List.find(params[:list_id])
+    @grocery = Grocery.find(params[:id])
+
+    list.groceries << @grocery
+
+    render json: @list, include: :groceries
+  end
+
+  def remove_grocery
+    @list = List.find(params[:list_id])  
+    @grocery = Grocery.find(params[:id])
+    @list.groceries.delete(@grocery)
+
+    render json: @list, include: :groceries
   end
 
 

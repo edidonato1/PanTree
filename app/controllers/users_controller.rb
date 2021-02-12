@@ -1,23 +1,23 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  # GET /users
+  
   def index
     @users = User.all
 
     render json: @users
   end
 
-  # GET /users/1
+
   def show
     render json: @user, include: [:pantry, :lists, :foods]
   end
 
-  # POST /users
+
   def create
     @user = User.new(user_params)
     @user.dark_mode = true
-    # @user.foods = Food.all
+
 
     if @user.save
       @token = encode({id: @user.id})
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
+
   def update
     if @user.update(params.require(:user).permit(:username, :password, :dark_mode))
       render json: @user
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+
   def destroy
     @user.destroy
   end

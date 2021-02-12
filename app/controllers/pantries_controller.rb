@@ -35,7 +35,9 @@ class PantriesController < ApplicationController
     render json: @pantry, include: :groceries
   end
 
-  def remove_grocery
+  # freeze_grocery => pauses time_left and toss_data
+
+  def remove_grocery # do we need this? consider just destroying grocery when removed from the pantry
     @grocery = Grocery.find(params[:id])
     @pantry = Pantry.find(params[:pantry_id])
     

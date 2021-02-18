@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-export default function Register(props) {
-  const { handleRegister } = props;
+export default function Register({handleRegister}) {
+
   const [formData, setFormData] = useState({
     password: '',
     username: '',
   })
   const [showPassword, setShowPassword] = useState(false)
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -14,6 +15,13 @@ export default function Register(props) {
       ...prevState,
       [name]: value
     }))
+  }
+
+  const checkPassword = e => {
+    let passwordCheck = e.target.value;
+    setPasswordMatch(
+      passwordCheck !== formData.password && passwordCheck.length ? false : true
+    )
   }
 
 
@@ -39,6 +47,13 @@ export default function Register(props) {
               name="password"
               value={formData.password}
               onChange={handleChange}
+            />
+        </label>
+        <label> re-enter password
+        <input
+              type={showPassword ? "text" : "password"}
+              name="password-check"
+              onChange={checkPassword}
             />
         </label>
         <button type="submit">go</button>

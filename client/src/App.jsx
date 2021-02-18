@@ -1,27 +1,16 @@
 import { useEffect, useState } from 'react';
-import {getOneFood} from './services/foods';
+import { Route, Switch } from 'react-router-dom';
+import LoginContainer from './containers/LoginContainer';
 
 function App() {
 
 
-  useEffect(() => {
-    const fetchFoods = async () => {
-    try {
-      const foodData = await getOneFood('1');
-      console.log(foodData)
-      } catch (error) {
-          console.log(error)
-      }
-    }
-    fetchFoods();
-  }, [])
-  
-
-
   return (
-    <div className="App">
-
-    </div>
+    <Switch >
+      <Route path="/">
+        <LoginContainer />
+      </Route>
+    </Switch>
   );
 }
 

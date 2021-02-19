@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
-import { LoggedInUserContext } from '../../contexts/LoggedInUser';
+import { useState } from 'react';
+
 
 const Login = ({handleLogin}) => {
 
-  const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
+
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -13,7 +13,6 @@ const Login = ({handleLogin}) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
-
       ...prevState,
       [name]: value,
     }))
@@ -22,7 +21,10 @@ const Login = ({handleLogin}) => {
   return (
     <div>
       <h1>login</h1>
-      <form>
+      <form onSubmit={(e => {
+        e.preventDefault();
+        handleLogin(formData);
+      })}>
         <label>username
          <input
             type="text"
@@ -35,10 +37,11 @@ const Login = ({handleLogin}) => {
          <input
             type={showPassword ? "text" : "password"}
             name="password"
-            value={formData.username}
+            value={formData.password}
             onChange={handleChange}
           />
         </label>
+        <button type="submit">go</button>
       </form>
     </div>
   );

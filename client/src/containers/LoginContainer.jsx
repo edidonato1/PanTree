@@ -3,14 +3,17 @@ import { loginUser, registerUser } from '../services/auth';
 import Register from '../screens/login/Register';
 import Login from '../screens/login/Login';
 import LandingPage from '../screens/login/LandingPage';
-import { useEffect } from 'react';
+import { useContext } from 'react';
+import { LoggedInUserContext } from '../contexts/LoggedInUser';
 
 export default function LoginContainer() {
+  const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
+
 
   const handleLogin = async (loginData) => {
     try {
       const userData = await loginUser(loginData);
-      console.log(userData)
+      setLoggedInUser(userData);
     } catch (e) {
       console.log(e);
     }

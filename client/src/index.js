@@ -7,13 +7,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { LoggedInUserProvider } from './contexts/LoggedInUser';
 
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <LoggedInUserProvider>
+  <React.StrictMode>
+    <Router>
+      <LoggedInUserProvider >
         <App />
       </LoggedInUserProvider>
-    </React.StrictMode>
-  </Router>,
+    </Router>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 

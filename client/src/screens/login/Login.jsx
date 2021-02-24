@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import Hero from '../../components/hero/Hero';
 
 
-const Login = ({handleLogin}) => {
+const Login = ({ handleLogin }) => {
 
 
   const [formData, setFormData] = useState({
@@ -20,28 +21,33 @@ const Login = ({handleLogin}) => {
 
   return (
     <div>
-      <h1>login</h1>
       <form onSubmit={(e => {
         e.preventDefault();
         handleLogin(formData);
       })}>
-        <label>username
-         <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </label>
-        <label>password
-         <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">go</button>
+        <div className="login-input left">
+          <label>username
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="login-input right">
+          <label>password
+          <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="button-container">
+          <button type="submit">go</button>
+        </div>
       </form>
     </div>
   );

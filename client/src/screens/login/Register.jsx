@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import Hero from '../../components/hero/Hero';
 export default function Register({handleRegister}) {
 
   const [formData, setFormData] = useState({
@@ -27,11 +27,9 @@ export default function Register({handleRegister}) {
 
   return (
     <div>
-      <h1>register</h1>
       <form onSubmit={e => {
         e.preventDefault();
         handleRegister(formData);
-        console.log(formData)
       }}>
         <label> username
         <input

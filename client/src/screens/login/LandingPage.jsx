@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Hero from '../../components/hero/Hero'
 
 
 export default function LandingPage(props) {
-  const { handleLogin, handleRegister } = props;
 
 
   return (
     <div>
-      <div className="hero">
-        {/* hero logo goes here */}
-      </div>
       <Link to="/login" id="login-link">
         log in
       </Link>

@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import Hero from '../../components/hero/Hero'
+import { useEffect } from 'react';
 
 
-export default function LandingPage(props) {
+export default function LandingPage({setPageToggle}) {
 
+  useEffect(() => {
+    setPageToggle("keep it fresh.")
+  }, []);
 
   return (
     <div>

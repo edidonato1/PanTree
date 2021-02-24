@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hero from '../../components/hero/Hero';
 
 
-const Login = ({ handleLogin }) => {
-
-
+const Login = ({ handleLogin, setPageToggle }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false)
+
+  useEffect(() => {
+    setPageToggle("log in")
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,31 +23,34 @@ const Login = ({ handleLogin }) => {
 
   return (
     <div>
-      <form onSubmit={(e => {
+      <form
+        className="auth"
+        id="login"
+        onSubmit={(e => {
         e.preventDefault();
         handleLogin(formData);
       })}>
         <div className="login-input left">
-          <label>username
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-            />
-          </label>
+          <input
+            id="login-username"
+            type="text"
+            placeholder="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
         </div>
         <div className="login-input right">
-          <label>password
           <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </label>
+            id="login-password"
+            type={showPassword ? "text" : "password"}
+            placeholder="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
         </div>
-        <div className="button-container">
+        <div className="button-container" id="login-go">
           <button type="submit">go</button>
         </div>
       </form>

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hero from '../../components/hero/Hero';
-export default function Register({handleRegister}) {
+export default function Register({handleRegister, setPageToggle}) {
 
   const [formData, setFormData] = useState({
     password: '',
@@ -8,6 +8,10 @@ export default function Register({handleRegister}) {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [passwordMatch, setPasswordMatch] = useState(true);
+
+  useEffect(() => {
+    setPageToggle("sign up")
+  }, []);
 
   const handleChange = e => {
     const { name, value } = e.target;

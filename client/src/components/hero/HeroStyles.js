@@ -18,9 +18,11 @@ h1 {
 }
 
 .hero-container {
+  z-index: 2;
   position: relative;
   height: 500px;
   width: 500px;
+  margin-bottom: -100px
 }
 
 .hero-dome {

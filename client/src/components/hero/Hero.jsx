@@ -5,30 +5,25 @@ import { useHistory, withRouter } from 'react-router-dom';
 
 
 
-const Hero = (props) => {
-  // const history = useHistory();
-  // const location = history.location.pathname;
-  const [showMessage, setMessage] = useState('');
+const Hero = ({pageToggle}) => {
 
-  const { match, location, history } = props;
+  // useEffect(() => {
+  //   console.log()
+  // }, [location, history]);
 
-  useEffect(() => {
-    console.log()
-  }, [location, history]);
+  // let message = '';
 
-  let message = '';
-
-  switch (location) {
-    case "/":
-      message = "keep it fresh."
-      break;
-    case "/login": 
-      message = "log in";
-      break;
-    case "/register":
-      message = "sign up";
-      break;
-  }
+  // switch (location) {
+  //   case "/":
+  //     message = "keep it fresh."
+  //     break;
+  //   case "/login": 
+  //     message = "log in";
+  //     break;
+  //   case "/register":
+  //     message = "sign up";
+  //     break;
+  // }
 
   return (
     <HeroStyles>
@@ -38,7 +33,7 @@ const Hero = (props) => {
         </div>
         <div id="hero-dome-mask"></div>
         <div className="under-dome">
-          <h2>{showMessage}</h2>
+          <h2>{pageToggle}</h2>
         </div>
       </div>
     </HeroStyles>

@@ -4,7 +4,7 @@ import { loginUser, registerUser } from '../../services/auth';
 import Register from '../../screens/login/Register';
 import Login from '../../screens/login/Login';
 import LandingPage from '../../screens/login/LandingPage';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { LoggedInUserContext } from '../../contexts/LoggedInUser';
 import LoginStyles from './LoginStyles'
 import Hero from '../../components/hero/Hero';
@@ -12,8 +12,7 @@ import Hero from '../../components/hero/Hero';
 export default function LoginContainer(props) {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
 
-
-
+  const [pageToggle, setPageToggle] = useState('keep it fresh')
 
   const handleLogin = async (loginData) => {
     try {
@@ -36,19 +35,22 @@ export default function LoginContainer(props) {
 
   return (
     <LoginStyles>
-      <Hero />
+      <Hero pageToggle={pageToggle}/>
       <Switch>
         <Route exact path="/">
-          <LandingPage />
+          <LandingPage
+            setPageToggle={setPageToggle} />
         </Route>
         <Route path="/login">
           <Login
             handleLogin={handleLogin}
+            setPageToggle={setPageToggle}
           />
         </Route>
         <Route path="/register">
           <Register
             handleRegister={handleRegister}
+            setPageToggle={setPageToggle}
           />
         </Route>
       </Switch>

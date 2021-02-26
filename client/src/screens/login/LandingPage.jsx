@@ -9,13 +9,16 @@ export default function LandingPage({setPageToggle}) {
   }, []);
 
   return (
-    <div>
-      <Link to="/login" id="login-link">
-        log in
+    <div className="auth">
+      <Link
+        to="/login"
+        className="login-input left link">
+        <span id="login-link">log in</span>
       </Link>
-      <br></br>
-      <Link to="/register" id="register-link">
-        sign up
+      <Link
+        to="/register"
+        className="login-input right link">
+        <span id="register-link">sign up</span>
       </Link>
     </div>
   )

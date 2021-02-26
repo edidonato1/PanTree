@@ -29,6 +29,7 @@ h1 {
   width: 500px;
   height: 500px;
   background: ${colors.paleGreen};
+  background: linear-gradient(.75turn, ${colors.paleGreen}, ${colors.paleLightBlue});
   border-radius: 50%;
   position: absolute;
   z-index: 1;
@@ -44,6 +45,7 @@ h1 {
 
 .under-dome {
   background: ${colors.paleLightBlue};
+  background: linear-gradient(.43turn, ${colors.paleLightBlue}, ${colors.paleGreen});
   position: absolute;
   top: 250px;
   display: flex;
@@ -51,6 +53,7 @@ h1 {
   align-items: center;
   z-index: 2;
   border-bottom-left-radius: 100%;
+
   height: 90px;
   width: 60%;
 }

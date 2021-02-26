@@ -14,6 +14,23 @@ const LoginStyles = styled.div`
     font-weight: 300;
   }
 
+  .link {
+    text-decoration: none;
+    color: black; 
+    margin: 0;
+  }
+
+  #login-link, #register-link {
+    margin: 10px;
+    width: fit-content;
+    padding: 5px;
+  }
+
+  #login-link:hover, #register-link:hover {
+    border: 2px solid white;
+    margin: 8px;
+  }
+
   * {
     font-family: avenir;
     font-size: 22px;
@@ -22,23 +39,32 @@ const LoginStyles = styled.div`
   .auth {
     display: flex;
     flex-direction: column;
-    height: 30vh;
     width: 100vw;
     justify-content: space-between;
+    height: fit-content;
   }
 
   .left, .right, .go {
     z-index: 3;
   }
 
-  @keyframes expand {
+  @keyframes enter-left {
     from {
-      width: 0px;
+      transform: translateX(100%);
     }
     to {
-      width: 60%;
+      transform: translateX(0%);
     }
   }
+  @keyframes enter-right {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+
 
   .button-container {
     background: ${colors.paleGreen};
@@ -53,15 +79,20 @@ const LoginStyles = styled.div`
     color: ${colors.eggplant};
   }
 
+  #login-link {
+    
+  }
+
   .login-input, .button-container {
     height: 60px;
     width: 60vw;
     display: flex;
+    align-items: center;
+    margin: 20px 0;
   }
 
   .login-input  {
     background: ${colors.lightBlue};
-    animation: expand 1s ease-in-out;
   }
 
   .login-input:focus-within {
@@ -76,6 +107,7 @@ const LoginStyles = styled.div`
   .left {
     display: flex;
     justify-content: flex-end;
+    /* animation: enter-right 1s ease-out 1s; */
   }
 
   #login-username {
@@ -83,6 +115,7 @@ const LoginStyles = styled.div`
   }
 
   .right {
+    /* animation: enter-left 1s ease-out 2s; */
     margin-left: 40vw;
   }
 

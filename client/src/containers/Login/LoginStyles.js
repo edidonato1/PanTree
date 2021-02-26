@@ -8,6 +8,11 @@ const LoginStyles = styled.div`
   height: 100vh;
   padding-top: 10vh;
 
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
   *::placeholder {
     font-size: 22px;
     color: black;
@@ -46,23 +51,6 @@ const LoginStyles = styled.div`
 
   .left, .right, .go {
     z-index: 3;
-  }
-
-  @keyframes enter-left {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-  @keyframes enter-right {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
   }
 
 
@@ -107,15 +95,15 @@ const LoginStyles = styled.div`
   .left {
     display: flex;
     justify-content: flex-end;
-    /* animation: enter-right 1s ease-out 1s; */
   }
+
 
   #login-username {
     text-align: right;
   }
 
   .right {
-    /* animation: enter-left 1s ease-out 2s; */
+    animation: enter-left 1s ease-out 2s;
     margin-left: 40vw;
   }
 

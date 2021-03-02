@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-import Hero from '../../components/hero/Hero';
-export default function Register({handleRegister, setPageToggle}) {
+import { useHistory } from 'react-router-dom';
+
+
+
+export default function Register({ handleRegister, setPageToggle }) {
 
   const [formData, setFormData] = useState({
     password: '',
@@ -8,6 +11,9 @@ export default function Register({handleRegister, setPageToggle}) {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const [barEnter, setBarEnter] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     setPageToggle("sign up")
@@ -28,37 +34,54 @@ export default function Register({handleRegister, setPageToggle}) {
     )
   }
 
+  const handleClick = (location) => {
+    setBarEnter(false);
+    setTimeout((() => { history.push(location) }), 2000)
+  }
+
 
   return (
     <div>
-      <form onSubmit={e => {
-        e.preventDefault();
-        handleRegister(formData);
-      }}>
-        <label> username
-        <input
+      <small className="switch">need an account? <span className="" onClick={() => handleClick('/register')}>sign up</span></small>
+      <form
+        className="auth"
+        onSubmit={e => {
+          e.preventDefault();
+          handleRegister(formData);
+        }}>
+        <div className="login-input left">
+          <input
+            className="login-left"
             type="text"
             name="username"
+            placeholder="username"
             value={formData.username}
             onChange={handleChange}
           />
-          </label>
-          <label> password
-        <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-        </label>
-        <label> re-enter password
-        <input
-              type={showPassword ? "text" : "password"}
-              name="password-check"
-              onChange={checkPassword}
-            />
-        </label>
-        <button type="submit">go</button>
+        </div>
+        <div className="login-input right">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="login-input left">
+          <input
+            className="login-left"
+            placeholder="re-enter password"
+            type={showPassword ? "text" : "password"}
+            name="password-check"
+            onChange={checkPassword}
+          />
+        </div>
+        <div
+          className="button-container"
+          id="login-go">
+          <button type="submit">go</button>
+        </div>
       </form>
     </div>
 

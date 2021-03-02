@@ -6,7 +6,7 @@ const LoginStyles = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  padding-top: 10vh;
+  padding-top: 5vh;
 
   ul {
     padding: 0;
@@ -40,6 +40,18 @@ const LoginStyles = styled.div`
     font-family: avenir;
     font-size: 22px;
     }
+
+  .switch {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 18px;
+  }
+
+  .switch-link:hover {
+    cursor: pointer;
+    color: ${colors.eggplant};
+  }
 
   .auth {
     display: flex;
@@ -92,18 +104,22 @@ const LoginStyles = styled.div`
     justify-content: flex-end;
   }
 
+  button:hover {
+    cursor: pointer;
+    background: ${colors.eggplant};
+    color: ${colors.paleGreen};
+  }
+
   .left {
     display: flex;
     justify-content: flex-end;
   }
 
-
-  #login-username {
+  .login-left {
     text-align: right;
   }
 
   .right {
-    animation: enter-left 1s ease-out 2s;
     margin-left: 40vw;
   }
 
@@ -114,14 +130,10 @@ const LoginStyles = styled.div`
     margin: 0 30px;
   }
 
-
   input:focus {
     outline: none;
   }
 
-  #login-password {
-
-  }
 
 `
 

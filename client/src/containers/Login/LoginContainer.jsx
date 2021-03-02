@@ -32,7 +32,6 @@ export default function LoginContainer(props) {
     }
   }
 
-
   return (
     <LoginStyles>
       <Hero pageToggle={pageToggle}/>

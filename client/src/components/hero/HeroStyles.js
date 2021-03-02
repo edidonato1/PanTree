@@ -53,7 +53,6 @@ h1 {
   align-items: center;
   z-index: 2;
   border-bottom-left-radius: 100%;
-
   height: 90px;
   width: 60%;
 }
@@ -61,7 +60,9 @@ h1 {
 h2 {
   margin-right: 20px;
   font-family: avenir;
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 25px;
+  text-shadow: 3px 2px 4px ${colors.paleLightBlue};
 }
 
 

@@ -3,40 +3,41 @@ import { useEffect, useState } from 'react';
 
 
 export default function LandingPage({ setPageToggle }) {
-  const [barEnter, setBarEnter] = useState(true);
+  const [barEnter, setBarEnter] = useState(false);
+  const[pageLoaded, setLoaded] = useState(false);
 
   const history = useHistory();
 
   useEffect(() => {
     setPageToggle("keep it fresh.")
-    setBarEnter(false)
+    setTimeout((() => {setBarEnter(true);}), 1000)
   }, []);
 
   const handleClick = (location) => {
-    setBarEnter(true);
-    setTimeout((() => { history.push(location) }), 1400)
+    setLoaded(false);
+    setBarEnter(false);
+    setTimeout((() => { history.push(location) }), 2000)
   }
 
   return (
     <ul className="auth">
       <li
         onClick={() => handleClick('/login')}
-        className="login-input left link"
+        className="login-input left"
         style={{
-          transform: barEnter ? "translateX(-100%)" : "translateX(0)",
-          transition: "1s"
-
+          transform: barEnter ?  "translateX(0)" : "translateX(-100%)",
+          transition: "1.5s"
         }}
       >
         <span id="login-link">log in</span>
       </li>
       <li
         onClick={() => handleClick('register')}
-        className="login-input right link"
+        className="login-input right"
         style={{
-          transform: barEnter ? "translateX(100%)" : "translateX(0)",
-          transition: "1s",
-          transitionDelay: ".4s"
+          transform: barEnter ? "translateX(0)" : "translateX(100%)" ,
+          transition: !pageLoaded ? "1.5s" : "none",
+          transitionDelay: ".6s"
         }}>
         <span id="register-link">sign up</span>
       </li>

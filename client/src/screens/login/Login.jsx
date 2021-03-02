@@ -41,7 +41,8 @@ const Login = ({ handleLogin, setPageToggle }) => {
           handleLogin(formData);
           handleClick('/')
         })}>
-        <div className="login-input left"
+        <div
+          className="login-input left"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(-100%)",
             transition: "1.5s"
@@ -55,7 +56,8 @@ const Login = ({ handleLogin, setPageToggle }) => {
             onChange={handleChange}
           />
         </div>
-        <div className="login-input right"
+        <div
+          className="login-input right"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(100%)",
             transition: "1.5s",

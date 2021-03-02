@@ -17,6 +17,7 @@ export default function Register({ handleRegister, setPageToggle }) {
 
   useEffect(() => {
     setPageToggle("sign up")
+    setTimeout((() => { setBarEnter(true) }), 1000)
   }, []);
 
   const handleChange = e => {
@@ -42,14 +43,22 @@ export default function Register({ handleRegister, setPageToggle }) {
 
   return (
     <div>
-      <small className="switch">need an account? <span className="" onClick={() => handleClick('/register')}>sign up</span></small>
+      <small className="switch">already have an account?
+        <span className="switch-link" onClick={() => handleClick('/login')}> log in</span>
+      </small>
       <form
         className="auth"
         onSubmit={e => {
           e.preventDefault();
           handleRegister(formData);
         }}>
-        <div className="login-input left">
+        <div
+          className="login-input left"
+          style={{
+            transform: barEnter ? "translateX(0)" : "translateX(-100%)",
+            transition: "1.5s"
+          }}
+        >
           <input
             className="login-left"
             type="text"
@@ -59,7 +68,13 @@ export default function Register({ handleRegister, setPageToggle }) {
             onChange={handleChange}
           />
         </div>
-        <div className="login-input right">
+        <div
+          className="login-input right"
+          style={{
+            transform: barEnter ? "translateX(0)" : "translateX(100%)",
+            transition: "1.5s",
+            transitionDelay: ".6s"
+          }}>
           <input
             type={showPassword ? "text" : "password"}
             name="password"
@@ -68,7 +83,16 @@ export default function Register({ handleRegister, setPageToggle }) {
             onChange={handleChange}
           />
         </div>
-        <div className="login-input left">
+        <div
+          className="login-input left"
+          style={{
+            transform: barEnter ? "translateX(0)" : "translateX(-100%)",
+            transition: "1.5s",
+            transitionDelay: "1.2s",
+            border: !passwordMatch ? "2px solid red" : "none",
+            margin: !passwordMatch ? "18px 0" : "20px 0",
+            borderLeft: "none"
+          }}>
           <input
             className="login-left"
             placeholder="re-enter password"
@@ -77,9 +101,7 @@ export default function Register({ handleRegister, setPageToggle }) {
             onChange={checkPassword}
           />
         </div>
-        <div
-          className="button-container"
-          id="login-go">
+        <div className="button-container right">
           <button type="submit">go</button>
         </div>
       </form>

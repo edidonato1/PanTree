@@ -63,6 +63,7 @@ const LoginStyles = styled.div`
 
   .left, .right, .go {
     z-index: 3;
+    display: flex;
   }
 
 
@@ -111,7 +112,6 @@ const LoginStyles = styled.div`
   }
 
   .left {
-    display: flex;
     justify-content: flex-end;
   }
 
@@ -121,6 +121,7 @@ const LoginStyles = styled.div`
 
   .right {
     margin-left: 40vw;
+    justify-content: flex-start;
   }
 
   input {

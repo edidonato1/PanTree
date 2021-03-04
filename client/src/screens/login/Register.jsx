@@ -20,7 +20,7 @@ export default function Register({ handleRegister, setPageToggle }) {
 
   useEffect(() => {
     setPageToggle("sign up")
-    setTimeout((() => { setBarEnter(true) }), 1000)
+    setTimeout((() => { setBarEnter(true) }), 500)
   }, []);
 
   const handleChange = e => {
@@ -55,13 +55,7 @@ export default function Register({ handleRegister, setPageToggle }) {
           e.preventDefault();
           handleRegister(formData);
         }}>
-        <div
-          className="login-input left"
-          style={{
-            transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "transform 1.5s"
-          }}
-        >
+        <Block left barEnter={barEnter}>
           <Input
             type="text"
             align="right"
@@ -69,14 +63,8 @@ export default function Register({ handleRegister, setPageToggle }) {
             value={formData.username}
             onChange={handleChange}
           />
-        </div>
-        <div
-          className="login-input right"
-          style={{
-            transform: barEnter ? "translateX(0)" : "translateX(100%)",
-            transition: "transform 1.5s",
-            transitionDelay: ".6s"
-          }}>
+        </Block>
+        <Block right barEnter={barEnter} >
           <FontAwesomeIcon
             icon={faEyeSlash}
             className="icon"
@@ -89,19 +77,16 @@ export default function Register({ handleRegister, setPageToggle }) {
             value={formData.password}
             onChange={handleChange}
           />
-        </div>i
-        <Block 
-          background={colors.lightBlue}
+        </Block>
+        <Block left
           justify="flex-end"
-          transform={barEnter ? "translateX(0%)" : "translateX(-100%)"}
-          delay="1.2s"
-          margin={!passwordMatch ? "18px 0" : "20px 0"}
+          barEnter={barEnter}
+          margin={!passwordMatch ? "12px 0" : "14px 0"}
           style={{
             border: !passwordMatch ? "2px solid red" : "none",
             borderLeft: !passwordMatch ? "none" : "inherit",
             margin: !passwordMatch ? "18px 0" : "20px 0"
-          }}
-        >
+          }}>
           <Input
             type={showPassword ? "text" : "password"}
             align="right"
@@ -109,10 +94,7 @@ export default function Register({ handleRegister, setPageToggle }) {
             onChange={checkPassword}
           />
         </Block>
-        {/* </div> */}
-        <Block
-          right
-          background={colors.paleGreen} >
+        <Block right button barEnter={barEnter}>
           <Button>go</Button>
         </Block>
       </form>

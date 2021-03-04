@@ -8,6 +8,10 @@ const HeroStyles = styled.div`
   src: url(${rockSalt});
 }
 
+display: flex;
+justify-content: center;
+margin-top: 5vh;
+
 h1 {
   font-family: 'Rock Salt';
   color: ${colors.eggplant};
@@ -22,7 +26,7 @@ h1 {
   position: relative;
   height: 500px;
   width: 500px;
-  margin-bottom: -100px
+  margin-bottom: -120px
 }
 
 .hero-dome {

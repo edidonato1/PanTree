@@ -5,8 +5,6 @@ const LoginStyles = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  padding-top: 5vh;
 
   ul {
     padding: 0;
@@ -19,13 +17,13 @@ const LoginStyles = styled.div`
     margin: 0;
   }
 
-  #login-link, #register-link {
+  .login-link{
     margin: 10px;
     width: fit-content;
     padding: 5px;
   }
 
-  #login-link:hover, #register-link:hover {
+  .login-link:hover {
     cursor: pointer;
     border: 2px solid white;
     margin: 8px;
@@ -59,11 +57,16 @@ const LoginStyles = styled.div`
     width: 100vw;
     justify-content: space-between;
     height: fit-content;
-  }
 
-  .left, .right, .go {
-    z-index: 3;
-    display: flex;
+    div:nth-child(2) {
+      transition-delay: .4s;
+    }
+    div:nth-child(3) {
+      transition-delay: .8s;
+    }
+    div:nth-child(4) {
+      transition-delay: 1.2s;
+    }
   }
 
 

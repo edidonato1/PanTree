@@ -18,20 +18,20 @@ const Input = styled.input.attrs(props => ({
 `
 
 const Block = styled.div`
-    height: 60px;
+    z-index: 3;
+    height: 50px;
     width: 60vw;
     display: flex;
     align-items: center;
-    margin: 20px 0;
-    justify-content: ${props => props.justify};
+    margin: 14px 0;
+    justify-content: ${props => props.left ? "flex-end" : "flex-start"};
     margin-left: ${props => props.right ? "40vw" : "none"};
-    background: ${props => props.background};
-    transform: ${props => props.transform};
-    transition: transform 1.5s;
-    transition-delay: ${props => props.delay};
+    background: ${props => props.button ? colors.paleGreen : colors.lightBlue};
+    transform: ${props => ({barEnter}) => barEnter ? "translateX(0%)" : props.left ? "translateX(-100%)" : "translateX(100%)"};
+    transition: transform 1.2s;
 
     &:focus-within {
-      background: ${colors.paleLightBlue};
+      background: ${props => props.button ? colors.paleGreen : colors.paleLightBlue};
     }
 `
 
@@ -50,8 +50,14 @@ const Button = styled.button.attrs(() => ({
     background: ${colors.eggplant};
     color: ${colors.paleGreen};
   }
+
+
 `
 
 
 
-export {Input, Block, Button}
+export {
+  Input,
+  Block,
+  Button
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import {Input} from './InputStyles';
+import { Input, Block, Button } from './InputStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,7 +19,7 @@ const Login = ({ handleLogin, setPageToggle }) => {
 
   useEffect(() => {
     setPageToggle("log in")
-    setTimeout((() => { setBarEnter(true) }), 1000);
+    setTimeout((() => { setBarEnter(true) }), 500);
   }, []);
 
   const handleChange = (e) => {
@@ -46,32 +46,20 @@ const Login = ({ handleLogin, setPageToggle }) => {
           handleLogin(formData);
           handleClick('/')
         })}>
-        <div
-          className="login-input left"
-          style={{
-            transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "transform 1.5s"
-          }}>
+        <Block left barEnter={barEnter}>
           <Input
             type="text"
             align="right"
-            justify="flex-end"
             name="username"
             value={formData.username}
             onChange={handleChange}
           />
-        </div>
-        <div
-          className="login-input right"
-          style={{
-            transform: barEnter ? "translateX(0)" : "translateX(100%)",
-            transition: "transform 1.5s",
-            transitionDelay: ".6s"
-          }}>
+        </Block>
+        <Block right barEnter={barEnter}>
           <FontAwesomeIcon
             icon={faEyeSlash}
             className="icon"
-            style={{color: showPassword ? colors.eggplant : "black"}}  
+            style={{ color: showPassword ? colors.eggplant : "black" }}
             onClick={() => setShowPassword(!showPassword)}
           />
           <Input
@@ -80,17 +68,10 @@ const Login = ({ handleLogin, setPageToggle }) => {
             value={formData.password}
             onChange={handleChange}
           />
-        </div >
-        <div
-          className="button-container"
-          id="login-go"
-          style={{
-            transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "transform 1.5s",
-            transitionDelay: "1.2s"
-          }}>
-          <button type="submit">go</button>
-        </div>
+        </Block>
+        <Block left button barEnter={barEnter} >
+          <Button >go</Button>
+        </Block>
       </form>
     </div>
   );

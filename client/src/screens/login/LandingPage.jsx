@@ -1,5 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Block } from './InputStyles';
+import colors from '../../css_assets/colorVars';
 
 
 export default function LandingPage({ setPageToggle }) {
@@ -9,7 +11,7 @@ export default function LandingPage({ setPageToggle }) {
 
   useEffect(() => {
     setPageToggle("keep it fresh.")
-    setTimeout((() => {setBarEnter(true);}), 1000)
+    setTimeout((() => { setBarEnter(true); }), 1000)
   }, []);
 
   const handleClick = (location) => {
@@ -19,26 +21,16 @@ export default function LandingPage({ setPageToggle }) {
 
   return (
     <ul className="auth">
-      <li
-        onClick={() => handleClick('/login')}
-        className="login-input left"
-        style={{
-          transform: barEnter ?  "translateX(0)" : "translateX(-100%)",
-          transition: "1.5s"
-        }}
-      >
-        <span id="login-link">log in</span>
-      </li>
-      <li
-        onClick={() => handleClick('register')}
-        className="login-input right"
-        style={{
-          transform: barEnter ? "translateX(0)" : "translateX(100%)" ,
-          transition: "1.5s",
-          transitionDelay: ".6s"
-        }}>
-        <span id="register-link">sign up</span>
-      </li>
+      <Block left barEnter={barEnter}>
+        <li className="login-link" onClick={() => handleClick('/login')} >
+          log in
+        </li>
+      </Block>
+      <Block right barEnter={barEnter}>
+        <li className="login-link" onClick={() => handleClick('register')}> 
+          sign up
+        </li>
+      </Block>
     </ul>
   )
 }

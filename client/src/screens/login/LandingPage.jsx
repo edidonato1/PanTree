@@ -4,8 +4,7 @@ import { Block } from './InputStyles';
 import colors from '../../css_assets/colorVars';
 
 
-export default function LandingPage({ setPageToggle }) {
-  const [barEnter, setBarEnter] = useState(false);
+export default function LandingPage({ setPageToggle, barEnter, setBarEnter }) {
 
   const history = useHistory();
 
@@ -16,7 +15,7 @@ export default function LandingPage({ setPageToggle }) {
 
   const handleClick = (location) => {
     setBarEnter(false);
-    setTimeout((() => { history.push(location) }), 2000)
+    setTimeout((() => { history.push(location) }), 1400)
   }
 
   return (

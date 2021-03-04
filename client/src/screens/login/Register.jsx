@@ -6,7 +6,11 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import colors from '../../css_assets/colorVars';
 
 
-export default function Register({ handleRegister, setPageToggle }) {
+export default function Register({
+  handleRegister,
+  setPageToggle,
+  barEnter,
+  setBarEnter }) {
 
   const [formData, setFormData] = useState({
     password: '',
@@ -14,7 +18,6 @@ export default function Register({ handleRegister, setPageToggle }) {
   })
   const [showPassword, setShowPassword] = useState(false)
   const [passwordMatch, setPasswordMatch] = useState(true);
-  const [barEnter, setBarEnter] = useState(false);
 
   const history = useHistory();
 

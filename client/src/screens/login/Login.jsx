@@ -7,13 +7,12 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import colors from '../../css_assets/colorVars'
 
 
-const Login = ({ handleLogin, setPageToggle }) => {
+const Login = ({ handleLogin, setPageToggle, barEnter, setBarEnter }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [barEnter, setBarEnter] = useState(false);
 
   const history = useHistory();
 
@@ -32,7 +31,7 @@ const Login = ({ handleLogin, setPageToggle }) => {
 
   const handleClick = (location) => {
     setBarEnter(false);
-    setTimeout((() => { history.push(location) }), 2000);
+    setTimeout((() => { history.push(location) }), 1800);
   };
 
   return (

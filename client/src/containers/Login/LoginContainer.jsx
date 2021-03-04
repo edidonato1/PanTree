@@ -35,35 +35,37 @@ export default function LoginContainer(props) {
 
   return (
     <>
-      <Hero pageToggle={pageToggle}/>
-    <LoginStyles>
-      <Switch>
-        <Route exact path="/">
-          <LandingPage
-            setPageToggle={setPageToggle}
-            barEnter={barEnter}
-            setBarEnter={setBarEnter}
-          />
-        </Route>
-        <Route path="/login">
-          <Login
-            handleLogin={handleLogin}
-            setPageToggle={setPageToggle}
-            barEnter={barEnter}
-            setBarEnter={setBarEnter}
-              
-          />
-        </Route>
-        <Route path="/register">
-          <Register
-            handleRegister={handleRegister}
-            setPageToggle={setPageToggle}
-             barEnter={barEnter}
-             setBarEnter={setBarEnter}
-          />
-        </Route>
-      </Switch>
+      <Hero
+        pageToggle={pageToggle}
+        barEnter={barEnter}
+        setBarEnter={setBarEnter}/>
+      <LoginStyles>
+        <Switch>
+          <Route exact path="/">
+            <LandingPage
+              setPageToggle={setPageToggle}
+              barEnter={barEnter}
+              setBarEnter={setBarEnter}
+            />
+          </Route>
+          <Route path="/login">
+            <Login
+              handleLogin={handleLogin}
+              setPageToggle={setPageToggle}
+              barEnter={barEnter}
+              setBarEnter={setBarEnter}
+            />
+          </Route>
+          <Route path="/register">
+            <Register
+              handleRegister={handleRegister}
+              setPageToggle={setPageToggle}
+              barEnter={barEnter}
+              setBarEnter={setBarEnter}
+            />
+          </Route>
+        </Switch>
       </LoginStyles>
-      </>
+    </>
   )
 }

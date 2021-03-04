@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import {Input} from './InputStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 import colors from '../../css_assets/colorVars'
 
 

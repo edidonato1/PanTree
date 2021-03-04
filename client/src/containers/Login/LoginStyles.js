@@ -86,9 +86,6 @@ const LoginStyles = styled.div`
     color: ${colors.eggplant};
   }
 
-  #login-link {
-    
-  }
 
   .login-input, .button-container {
     height: 60px;

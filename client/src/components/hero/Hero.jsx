@@ -1,8 +1,5 @@
 import HeroStyles from './HeroStyles';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-
 
 
 const Hero = ({ pageToggle }) => {

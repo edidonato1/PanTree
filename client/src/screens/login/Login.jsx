@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import colors from '../../css_assets/colorVars'
 
 
 const Login = ({ handleLogin, setPageToggle }) => {
@@ -7,14 +10,14 @@ const Login = ({ handleLogin, setPageToggle }) => {
     username: '',
     password: ''
   });
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [barEnter, setBarEnter] = useState(false);
 
   const history = useHistory();
 
   useEffect(() => {
     setPageToggle("log in")
-    setTimeout((() => { setBarEnter(true) }), 1000)
+    setTimeout((() => { setBarEnter(true) }), 1000);
   }, []);
 
   const handleChange = (e) => {
@@ -22,13 +25,13 @@ const Login = ({ handleLogin, setPageToggle }) => {
     setFormData(prevState => ({
       ...prevState,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleClick = (location) => {
     setBarEnter(false);
-    setTimeout((() => { history.push(location) }), 2000)
-  }
+    setTimeout((() => { history.push(location) }), 2000);
+  };
 
   return (
     <div>
@@ -45,7 +48,7 @@ const Login = ({ handleLogin, setPageToggle }) => {
           className="login-input left"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "1.5s"
+            transition: "transform 1.5s"
           }}>
           <input
             className="login-left"
@@ -60,9 +63,15 @@ const Login = ({ handleLogin, setPageToggle }) => {
           className="login-input right"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(100%)",
-            transition: "1.5s",
+            transition: "transform 1.5s",
             transitionDelay: ".6s"
           }}>
+          <FontAwesomeIcon
+            icon={faEyeSlash}
+            className="icon"
+            style={{color: showPassword ? colors.eggplant : "black"}}  
+            onClick={() => setShowPassword(!showPassword)}
+          />
           <input
             id="login-password"
             type={showPassword ? "text" : "password"}
@@ -77,7 +86,7 @@ const Login = ({ handleLogin, setPageToggle }) => {
           id="login-go"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "1.5s",
+            transition: "transform 1.5s",
             transitionDelay: "1.2s"
           }}>
           <button type="submit">go</button>

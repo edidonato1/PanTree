@@ -13,6 +13,7 @@ export default function LoginContainer(props) {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
 
   const [pageToggle, setPageToggle] = useState('keep it fresh')
+  const [transitions, setTransitions] = useState(true);
 
   const handleLogin = async (loginData) => {
     try {
@@ -38,18 +39,25 @@ export default function LoginContainer(props) {
       <Switch>
         <Route exact path="/">
           <LandingPage
-            setPageToggle={setPageToggle} />
+            setPageToggle={setPageToggle}
+            transitions={transitions}
+            setTransitions={setTransitions}
+          />
         </Route>
         <Route path="/login">
           <Login
             handleLogin={handleLogin}
             setPageToggle={setPageToggle}
+            transitions={transitions}
+            setTransitions={setTransitions}
           />
         </Route>
         <Route path="/register">
           <Register
             handleRegister={handleRegister}
             setPageToggle={setPageToggle}
+            transitions={transitions}
+            setTransitions={setTransitions}
           />
         </Route>
       </Switch>

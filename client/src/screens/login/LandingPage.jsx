@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 export default function LandingPage({ setPageToggle }) {
   const [barEnter, setBarEnter] = useState(false);
-  const[pageLoaded, setLoaded] = useState(false);
 
   const history = useHistory();
 
@@ -14,7 +13,6 @@ export default function LandingPage({ setPageToggle }) {
   }, []);
 
   const handleClick = (location) => {
-    setLoaded(false);
     setBarEnter(false);
     setTimeout((() => { history.push(location) }), 2000)
   }
@@ -36,7 +34,7 @@ export default function LandingPage({ setPageToggle }) {
         className="login-input right"
         style={{
           transform: barEnter ? "translateX(0)" : "translateX(100%)" ,
-          transition: !pageLoaded ? "1.5s" : "none",
+          transition: "1.5s",
           transitionDelay: ".6s"
         }}>
         <span id="register-link">sign up</span>

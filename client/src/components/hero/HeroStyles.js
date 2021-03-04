@@ -60,9 +60,9 @@ h1 {
 h2 {
   margin-right: 20px;
   font-family: avenir;
-  font-weight: 400;
-  font-size: 25px;
-  text-shadow: 3px 2px 4px ${colors.paleLightBlue};
+  font-weight: 500;
+  font-size: 30px;
+  text-shadow: 3px 3px 4px ${colors.paleLightBlue};
 }
 
 

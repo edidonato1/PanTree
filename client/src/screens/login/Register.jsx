@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import colors from '../../css_assets/colorVars'
 
 
 export default function Register({ handleRegister, setPageToggle }) {
@@ -56,7 +58,7 @@ export default function Register({ handleRegister, setPageToggle }) {
           className="login-input left"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "1.5s"
+            transition: "transform 1.5s"
           }}
         >
           <input
@@ -72,26 +74,33 @@ export default function Register({ handleRegister, setPageToggle }) {
           className="login-input right"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(100%)",
-            transition: "1.5s",
+            transition: "transform 1.5s",
             transitionDelay: ".6s"
           }}>
+          <FontAwesomeIcon
+            icon={faEyeSlash}
+            className="icon"
+            style={{color: showPassword ? colors.eggplant : "black"}}
+            onClick={() => setShowPassword(!showPassword)}
+          />
           <input
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="password"
             value={formData.password}
             onChange={handleChange}
+
           />
         </div>
         <div
           className="login-input left"
           style={{
             transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "1.5s",
+            transition: "transform 1.5s",
             transitionDelay: "1.2s",
             border: !passwordMatch ? "2px solid red" : "none",
             margin: !passwordMatch ? "18px 0" : "20px 0",
-            borderLeft: "none"
+            borderLeft: !passwordMatch ? "none" : "inherit"
           }}>
           <input
             className="login-left"

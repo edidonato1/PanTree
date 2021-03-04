@@ -32,8 +32,14 @@ const LoginStyles = styled.div`
   }
 
   #login-link:hover, #register-link:hover {
+    cursor: pointer;
     border: 2px solid white;
     margin: 8px;
+  }
+
+  .icon {
+    margin: 0 -15px 0 20px;
+    font-size: 18px;
   }
 
   * {

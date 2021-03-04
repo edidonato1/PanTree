@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Input, Block, Button } from './InputStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import colors from '../../css_assets/colorVars'
+import colors from '../../css_assets/colorVars';
 
 
 export default function Register({ handleRegister, setPageToggle }) {
@@ -61,11 +62,10 @@ export default function Register({ handleRegister, setPageToggle }) {
             transition: "transform 1.5s"
           }}
         >
-          <input
-            className="login-left"
+          <Input
             type="text"
+            align="right"
             name="username"
-            placeholder="username"
             value={formData.username}
             onChange={handleChange}
           />
@@ -80,41 +80,43 @@ export default function Register({ handleRegister, setPageToggle }) {
           <FontAwesomeIcon
             icon={faEyeSlash}
             className="icon"
-            style={{color: showPassword ? colors.eggplant : "black"}}
+            style={{ color: showPassword ? colors.eggplant : "black" }}
             onClick={() => setShowPassword(!showPassword)}
           />
-          <input
+          <Input
             type={showPassword ? "text" : "password"}
             name="password"
-            placeholder="password"
             value={formData.password}
             onChange={handleChange}
-
           />
-        </div>
-        <div
-          className="login-input left"
+        </div>i
+        <Block 
+          background={colors.lightBlue}
+          justify="flex-end"
+          transform={barEnter ? "translateX(0%)" : "translateX(-100%)"}
+          delay="1.2s"
+          margin={!passwordMatch ? "18px 0" : "20px 0"}
           style={{
-            transform: barEnter ? "translateX(0)" : "translateX(-100%)",
-            transition: "transform 1.5s",
-            transitionDelay: "1.2s",
             border: !passwordMatch ? "2px solid red" : "none",
-            margin: !passwordMatch ? "18px 0" : "20px 0",
-            borderLeft: !passwordMatch ? "none" : "inherit"
-          }}>
-          <input
-            className="login-left"
-            placeholder="re-enter password"
+            borderLeft: !passwordMatch ? "none" : "inherit",
+            margin: !passwordMatch ? "18px 0" : "20px 0"
+          }}
+        >
+          <Input
             type={showPassword ? "text" : "password"}
-            name="password-check"
+            align="right"
+            name="re-enter password"
             onChange={checkPassword}
           />
-        </div>
-        <div className="button-container right">
-          <button type="submit">go</button>
-        </div>
+        </Block>
+        {/* </div> */}
+        <Block
+          right
+          background={colors.paleGreen} >
+          <Button>go</Button>
+        </Block>
       </form>
-    </div>
+    </div >
 
   )
 

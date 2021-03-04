@@ -13,12 +13,6 @@ const LoginStyles = styled.div`
     list-style-type: none;
   }
 
-  *::placeholder {
-    font-size: 22px;
-    color: black;
-    font-weight: 300;
-  }
-
   .link {
     text-decoration: none;
     color: black; 
@@ -86,7 +80,6 @@ const LoginStyles = styled.div`
     color: ${colors.eggplant};
   }
 
-
   .login-input, .button-container {
     height: 60px;
     width: 60vw;
@@ -118,21 +111,11 @@ const LoginStyles = styled.div`
     justify-content: flex-end;
   }
 
-  .login-left {
-    text-align: right;
-  }
-
   .right {
     margin-left: 40vw;
     justify-content: flex-start;
   }
 
-  input {
-    font-family: avenir;
-    background: none;
-    border: none;
-    margin: 0 30px;
-  }
 
   input:focus {
     outline: none;

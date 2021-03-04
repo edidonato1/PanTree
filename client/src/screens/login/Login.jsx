@@ -52,10 +52,10 @@ const Login = ({ handleLogin, setPageToggle }) => {
             transform: barEnter ? "translateX(0)" : "translateX(-100%)",
             transition: "transform 1.5s"
           }}>
-          <input
-            className="login-left"
+          <Input
             type="text"
-            placeholder="username"
+            align="right"
+            justify="flex-end"
             name="username"
             value={formData.username}
             onChange={handleChange}
@@ -74,10 +74,8 @@ const Login = ({ handleLogin, setPageToggle }) => {
             style={{color: showPassword ? colors.eggplant : "black"}}  
             onClick={() => setShowPassword(!showPassword)}
           />
-          <input
-            id="login-password"
+          <Input
             type={showPassword ? "text" : "password"}
-            placeholder="password"
             name="password"
             value={formData.password}
             onChange={handleChange}

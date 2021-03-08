@@ -38,10 +38,33 @@ const NavBar = styled.nav`
 
   }
 
-#username {
-  margin: 0 2em 1em 0;
-}
+  #username {
+    margin: 0 2em 1em 0;
+  }
 
+
+  .nav-right {
+    display: flex;
+    align-items: flex-end;
+
+  }
+
+  .nav-link {
+    text-decoration: none;
+    text-align: center;
+    margin: 0 1em;
+    color: ${colors.paleGreen};
+    width: 5em;
+  }
+
+  .link-box {
+    border-bottom: 5px solid ${colors.paleGreen};
+    padding: Calc(1em - 5px);
+  }
+
+  #home-link {
+    margin-left: 0;
+  }
 `
 
 export default NavBar

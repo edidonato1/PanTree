@@ -43,7 +43,6 @@ const Login = ({ handleLogin, setPageToggle, barEnter, setBarEnter }) => {
         onSubmit={(e => {
           e.preventDefault();
           handleLogin(formData);
-          handleClick('/')
         })}>
         <Block left barEnter={barEnter}>
           <Input

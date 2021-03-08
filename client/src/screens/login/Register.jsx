@@ -82,7 +82,6 @@ export default function Register({
           />
         </Block>
         <Block left
-          justify="flex-end"
           barEnter={barEnter}
           margin={!passwordMatch ? "12px 0" : "14px 0"}
           style={{

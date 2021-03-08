@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { loginUser, registerUser } from '../../services/auth';
 import Register from '../../screens/login/Register';
 import Login from '../../screens/login/Login';
@@ -15,10 +15,13 @@ export default function LoginContainer(props) {
   const [pageToggle, setPageToggle] = useState('keep it fresh')
   const [barEnter, setBarEnter] = useState(false);
 
+  const history = useHistory();
+
   const handleLogin = async (loginData) => {
     try {
       const userData = await loginUser(loginData);
       setLoggedInUser(userData);
+      history.push('/home')
     } catch (e) {
       console.log(e);
     }

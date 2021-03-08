@@ -77,6 +77,6 @@ class ListsController < ApplicationController
     end
 
     def grocery_params 
-      params.require(:grocery).permit( :status, :time_left, :food_id)
+      params.require(:grocery).permit( :status )
     end
 end

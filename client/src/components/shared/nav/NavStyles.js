@@ -21,7 +21,7 @@ const NavBar = styled.nav`
     align-items: flex-end;
     width: 38%;
     background: ${colors.paleGreen};
-    min-width: 300px;
+    min-width: 350px;
     color: ${colors.eggplant};
 
   }

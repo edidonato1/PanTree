@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy ]
-  # before_action :authorize_request
+  before_action :authorize_request, only: [:create]
 
   def index
     @list = List.all
@@ -51,7 +51,8 @@ class ListsController < ApplicationController
 
 
   def create
-    @list = List.new(list_params)
+    @list = List.new
+    @list.user_id = @current_user.id
 
     if @list.save
       render json: @list

@@ -7,4 +7,15 @@ class User < ApplicationRecord
   has_one :pantry
   has_many :lists
   has_many :foods
+
+  def return_data 
+    {
+      id: id,
+      username: username,
+      lists: lists,
+      pantry: pantry,
+      dark_mode: dark_mode
+    }
+  end
+
 end

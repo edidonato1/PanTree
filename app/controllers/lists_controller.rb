@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy ]
-  before_action :authorize_request, only: [:create]
+  before_action :authorize_request, only: [:create, :add_new_grocery]
 
   def index
     @list = List.all
@@ -29,6 +29,24 @@ class ListsController < ApplicationController
       render json: @list, include: :groceries
     else
       render json: @grocery.errors, status: :unprocessable_entity
+    end
+  end
+
+  def add_new_grocery
+    @list = List.find(params[:list_id])
+    @food = Food.new(food_params)
+    @food.user_id = @current_user.id
+    if @food.save
+      @grocery = Grocery.new
+      @grocery.food_id = @food.id
+      if @grocery.save
+        @list.groceries << @grocery
+        render json: @list, include: :groceries
+      else
+        render json: @grocery.errors
+      end
+    else
+      render json: @food.errors
     end
   end
 
@@ -77,6 +95,10 @@ class ListsController < ApplicationController
     end
 
     def grocery_params 
-      params.require(:grocery).permit( :status )
+      params.require(:grocery).permit( :food_id )
+    end
+
+    def food_params
+      params.require(:food).permit(:name, :category_id, :user_id)
     end
 end

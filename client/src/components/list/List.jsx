@@ -1,6 +1,6 @@
 import { ListStyles, ListAdd } from './ListStyles';
 import { useContext, useEffect, useState } from 'react';
-import { createList, addGroceryToList } from '../../services/lists';
+import { createList, getOneList, addGroceryToList } from '../../services/lists';
 import { getAllFoods } from '../../services/foods';
 import {LoggedInUserContext} from '../../contexts/LoggedInUser';
 import { loginUser } from '../../services/auth';
@@ -15,7 +15,20 @@ const List = () => {
   const [foodBank, setFoods] = useState([]);
   const [match, setMatch] = useState();
 
+  const [groceryData, setGroceryData] = useState({
+    food_id: '',
+    status: ''
+  })
 
+  const [foodData, setFoodData] = useState({
+    name: '',
+    category_id: ''
+  })
+
+  // when we add a new grocery to the list, we will search all of the foods
+  // if there is no food matching that name, we need to create one and assign it a category and name
+  // this new food item's id will be assigned to the new grocery item
+  // if the food already exists in the db, we select that as the grocery's food_id
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -23,8 +36,13 @@ const List = () => {
       setFoods(data);
     }
     fetchFoods();
-    if (loggedInUser.lists !== undefined) {
-      setList(loggedInUser.lists.length ? loggedInUser.lists[0] : {})
+    if (loggedInUser?.lists !== undefined) {
+      let listId = loggedInUser.lists[0].id
+      const fetchList = async () => {
+        const data = await getOneList(listId);
+        setList(data);
+      }
+      fetchList();
     }
   }, [loggedInUser]);
 
@@ -34,9 +52,14 @@ const List = () => {
     ))
   }, [foodBank, grocery]);
 
+  const handleSubmit = () => {
+    // 
+  }
+
 
   return (
     <ListStyles>
+      <h1>my list</h1>
       <form >
         <ListAdd
           value={grocery}

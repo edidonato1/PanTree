@@ -5,13 +5,18 @@ export const createList = async () => {
   return resp.data;
 }
 
+export const getOneList = async id => {
+  const resp = await api.get(`/lists/${id}`);
+  return resp.data;
+}
+
 export const updateList = async (id, listData) => {
   const resp = await api.put(`/lists/${id}`, { list: listData })
   return resp.data;
 }
 
-export const addGroceryToList = async id => {
-  const resp = await api.put(`/lists/${id}/groceries/`);
+export const addGroceryToList = async (id, groceryData) => {
+  const resp = await api.put(`/lists/${id}/groceries/`, {grocery: groceryData});
   return resp.data;
 }
 

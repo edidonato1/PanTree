@@ -1,16 +1,16 @@
 import { ListStyles, ListAdd } from './ListStyles';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { createList, getOneList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
 import { getAllFoods } from '../../services/foods';
 import { getAllCategories } from '../../services/categories';
-import {LoggedInUserContext} from '../../contexts/LoggedInUser';
+import { LoggedInUserContext } from '../../contexts/LoggedInUser';
 import { loginUser } from '../../services/auth';
 
 
 
 const List = () => {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
-  
+
   const [categories, setCategories] = useState([])
   const [grocery, setGrocery] = useState('')
   const [currentList, setList] = useState({})
@@ -56,13 +56,13 @@ const List = () => {
   }, [loggedInUser, updated]);
 
   useEffect(() => {
-    setMatch(foodBank.filter(f => 
+    setMatch(foodBank.filter(f =>
       f.name.toLowerCase() === grocery.toLowerCase()
     ))
   }, [foodBank, grocery]);
 
   const handleSubmit = () => {
-    
+
   }
 
   const handleNewFoodSubmit = async () => {
@@ -72,7 +72,6 @@ const List = () => {
   }
 
   // let newList = currentList?.groceries.map(item => item)
-
 
   return (
     <ListStyles>
@@ -88,7 +87,7 @@ const List = () => {
             setGrocery(e.target.value)
           }}
         />
-        {categories.map(c => 
+        {categories.map(c =>
           <button onClick={(e) => {
             e.preventDefault();
             setFoodData(prevState => ({
@@ -100,10 +99,24 @@ const List = () => {
             }
           }
           }>{c.name}</button>
-          )}
+        )}
       </form>
       <div>
-          
+        {categories.map(c =>
+          <React.Fragment>
+            <h3>{c.name}</h3>
+            <ul>
+              {foodBank.map(f =>
+                f.category_id === c.id ?
+                  currentList.groceries.map(g =>
+                    g.food_id === f.id ?
+                      <li>{f.name}</li> : <></>
+                  )
+                  : <></>
+              )}
+            </ul>
+          </React.Fragment>
+        )}
       </div>
     </ListStyles>
   )

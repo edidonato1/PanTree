@@ -9,6 +9,7 @@ const ListStyles = styled.div`
   width: 300px;
   padding: 20px;
   margin: 20px;
+  overflow: scroll;
 `
 
 const ListAdd = styled.input.attrs(() => ({

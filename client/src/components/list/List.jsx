@@ -13,10 +13,11 @@ const List = () => {
 
   const [categories, setCategories] = useState([])
   const [grocery, setGrocery] = useState('')
-  const [currentList, setList] = useState({})
+  const [currentList, setList] = useState([])
   const [foodBank, setFoods] = useState([]);
   const [match, setMatch] = useState();
   const [updated, setUpdated] = useState(false);
+  const [isLoaded, setLoaded] = useState(false);
 
 
   const [groceryData, setGroceryData] = useState({
@@ -53,7 +54,14 @@ const List = () => {
       }
       fetchList();
     }
+
   }, [loggedInUser, updated]);
+
+  useEffect(() => {
+    if (categories.length && foodBank.length) {
+      setTimeout((() => setLoaded(true)), 400)
+    }
+  }, [foodBank, categories, updated]);
 
   useEffect(() => {
     setMatch(foodBank.filter(f =>
@@ -61,17 +69,31 @@ const List = () => {
     ))
   }, [foodBank, grocery]);
 
+  useEffect(() => {
+    if (foodData.category_id !== "" && foodData.name !== "") {
+      handleNewFoodSubmit()
+
+    }
+  }, [foodData]);
+
   const handleSubmit = () => {
 
   }
 
   const handleNewFoodSubmit = async () => {
-    const newItem = await addNewGroceryToList(currentList.id, foodData)
-    setUpdated(!updated);
-    setGrocery('')
+    try {
+      const newItem = await addNewGroceryToList(currentList.id, foodData)
+      setUpdated(!updated)
+      setFoodData({
+        name: '',
+        category_id: ''
+      })
+      setGrocery('')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  // let newList = currentList?.groceries.map(item => item)
 
   return (
     <ListStyles>
@@ -87,36 +109,40 @@ const List = () => {
             setGrocery(e.target.value)
           }}
         />
-        {categories.map(c =>
-          <button onClick={(e) => {
+        {
+        !match?.length ?
+          categories.map(c =>
+          <button key={c.id} onClick={(e) => {
             e.preventDefault();
             setFoodData(prevState => ({
               ...prevState,
               category_id: c.id
             }))
-            if (foodData.category_id) {
-              handleNewFoodSubmit()
-            }
           }
           }>{c.name}</button>
-        )}
+        )
+            :
+            <button>submit</button>
+      }
       </form>
       <div>
-        {categories.map(c =>
-          <React.Fragment>
-            <h3>{c.name}</h3>
-            <ul>
-              {foodBank.map(f =>
-                f.category_id === c.id ?
-                  currentList.groceries.map(g =>
-                    g.food_id === f.id ?
-                      <li>{f.name}</li> : <></>
-                  )
-                  : <></>
-              )}
-            </ul>
-          </React.Fragment>
-        )}
+        {
+          isLoaded ?
+            categories?.map(c =>
+              <React.Fragment>
+                <h3>{c.name}</h3>
+                  {foodBank?.map(f =>
+                    f.category_id == c.id ?
+                      currentList.groceries.map(g =>
+                        g.food_id == f.id ?
+                          <li>{f.name}</li> : <></>
+                      )
+                      : <></>
+                  )}
+              </React.Fragment>
+            )
+            : <><h2>loading...</h2></>
+        }
       </div>
     </ListStyles>
   )

@@ -20,6 +20,11 @@ export const addGroceryToList = async (id, groceryData) => {
   return resp.data;
 }
 
+export const addNewGroceryToList = async (id, foodData) => {
+  const resp = await api.put(`/lists/${id}/foods`, {food: foodData });
+  return resp.data;
+}
+
 export const moveGroceryToList = async (listId, groceryId) => {
   const resp = await api.put(`/list/${listId}/groceries/${groceryId}`);
   return resp.data;

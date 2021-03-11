@@ -1,7 +1,8 @@
 import { ListStyles, ListAdd } from './ListStyles';
 import { useContext, useEffect, useState } from 'react';
-import { createList, getOneList, addGroceryToList } from '../../services/lists';
+import { createList, getOneList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
 import { getAllFoods } from '../../services/foods';
+import { getAllCategories } from '../../services/categories';
 import {LoggedInUserContext} from '../../contexts/LoggedInUser';
 import { loginUser } from '../../services/auth';
 
@@ -10,10 +11,13 @@ import { loginUser } from '../../services/auth';
 const List = () => {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
   
+  const [categories, setCategories] = useState([])
   const [grocery, setGrocery] = useState('')
   const [currentList, setList] = useState({})
   const [foodBank, setFoods] = useState([]);
   const [match, setMatch] = useState();
+  const [updated, setUpdated] = useState(false);
+
 
   const [groceryData, setGroceryData] = useState({
     food_id: '',
@@ -31,6 +35,11 @@ const List = () => {
   // if the food already exists in the db, we select that as the grocery's food_id
 
   useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await getAllCategories();
+      setCategories(data);
+    }
+    fetchCategories();
     const fetchFoods = async () => {
       const data = await getAllFoods();
       setFoods(data);
@@ -44,7 +53,7 @@ const List = () => {
       }
       fetchList();
     }
-  }, [loggedInUser]);
+  }, [loggedInUser, updated]);
 
   useEffect(() => {
     setMatch(foodBank.filter(f => 
@@ -53,19 +62,49 @@ const List = () => {
   }, [foodBank, grocery]);
 
   const handleSubmit = () => {
-    // 
+    
   }
+
+  const handleNewFoodSubmit = async () => {
+    const newItem = await addNewGroceryToList(currentList.id, foodData)
+    setUpdated(!updated);
+    setGrocery('')
+  }
+
+  // let newList = currentList?.groceries.map(item => item)
 
 
   return (
     <ListStyles>
       <h1>my list</h1>
-      <form >
+      <form onSubmit={handleSubmit}>
         <ListAdd
           value={grocery}
-          onChange={(e) => setGrocery(e.target.value)}
+          onChange={(e) => {
+            setFoodData(prevState => ({
+              ...prevState,
+              name: e.target.value
+            }))
+            setGrocery(e.target.value)
+          }}
         />
+        {categories.map(c => 
+          <button onClick={(e) => {
+            e.preventDefault();
+            setFoodData(prevState => ({
+              ...prevState,
+              category_id: c.id
+            }))
+            if (foodData.category_id) {
+              handleNewFoodSubmit()
+            }
+          }
+          }>{c.name}</button>
+          )}
       </form>
+      <div>
+          
+      </div>
     </ListStyles>
   )
 }

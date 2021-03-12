@@ -1,4 +1,4 @@
-import { ListStyles, ListAdd, Form, MyList } from './ListStyles';
+import { ListStyles, ListAdd, Form, MyList, Button } from './ListStyles';
 import React, { useContext, useEffect, useState } from 'react';
 import { createList, getOneList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
 import { getAllFoods } from '../../services/foods';
@@ -6,9 +6,11 @@ import { getAllCategories } from '../../services/categories';
 import { LoggedInUserContext } from '../../contexts/LoggedInUser';
 import { loginUser } from '../../services/auth';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBacon, faCarrot, faPrescriptionBottle, faToiletPaper } from '@fortawesome/free-solid-svg-icons';
 
 
-const List = ({categories}) => {
+const List = ({ categories }) => {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
 
   const [grocery, setGrocery] = useState('') // current state of input
@@ -26,6 +28,7 @@ const List = ({categories}) => {
     category_id: ''
   })
 
+  const icons = [0, faCarrot, faBacon, faPrescriptionBottle, faToiletPaper];
 
   useEffect(() => {
 
@@ -107,25 +110,27 @@ const List = ({categories}) => {
             }))
             setGrocery(e.target.value)
           }}
-          />
+        />
         <div className="button-container">
 
-        {
-          !match?.length ?
-          categories.map((c, i) => 
-          <button style={i == 0 ? { display: "none" } : {}}key={c.id} onClick={(e) => {
-            e.preventDefault();
-            setFoodData(prevState => ({
-              ...prevState,
-              category_id: c.id
-            }))
+          {
+            !match?.length ?
+              categories.map((c, i) =>
+                <Button style={i == 0 ? { display: "none" } : {}} key={c.id} onClick={(e) => {
+                  e.preventDefault();
+                  setFoodData(prevState => ({
+                    ...prevState,
+                    category_id: c.id
+                  }))
+                }
+                }><div className="hidden-name">{c.name}</div><FontAwesomeIcon  icon={icons[i]} /></Button>
+              )
+              :
+              <div className="button-containter">
+                <Button add type="submit">add</Button>
+              </div>
           }
-        }>{c.name}</button>
-        )
-        :
-        <button type="submit">submit</button>
-      }
-      </div>
+        </div>
       </Form>
       <MyList>
         {

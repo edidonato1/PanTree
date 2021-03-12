@@ -1,4 +1,5 @@
 import { ListStyles, ListAdd, Form, MyList, Button } from './ListStyles';
+import ListItem from './ListItem';
 import React, { useContext, useEffect, useState } from 'react';
 import { createList, getOneList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
 import { getAllFoods } from '../../services/foods';
@@ -143,7 +144,7 @@ const List = ({ categories }) => {
                     f.category_id == c.id ?
                       currentList.groceries.map(g =>
                         g.food_id == f.id ?
-                          <li key={f.id}>{f.name}</li> : null
+                          <ListItem key={f.id} name={f.name}/> : null
                       )
                       : null
                   )}

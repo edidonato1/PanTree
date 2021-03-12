@@ -57,6 +57,8 @@ const Form = styled.form`
   flex-direction: column;
   position: relative;
 
+
+
   .button-container {
     margin-top: 50px;
     display: flex;
@@ -66,6 +68,15 @@ const Form = styled.form`
   
   }
 `
+
+
+const Grocery = styled.div`
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px 0;
+  text-align: center;
+`
+
 
 const Button = styled.button`
   font-size: 30px;
@@ -113,4 +124,11 @@ const MyList = styled.ul`
   }
 `
 
-export {ListStyles, ListAdd, Form, MyList, Button}
+export {
+  ListStyles,
+  ListAdd,
+  Form,
+  MyList,
+  Button,
+  Grocery
+}

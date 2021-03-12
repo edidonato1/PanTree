@@ -1,4 +1,4 @@
-import { ListStyles, ListAdd } from './ListStyles';
+import { ListStyles, ListAdd, Form, MyList } from './ListStyles';
 import React, { useContext, useEffect, useState } from 'react';
 import { createList, getOneList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
 import { getAllFoods } from '../../services/foods';
@@ -97,7 +97,7 @@ const List = ({categories}) => {
   return (
     <ListStyles>
       <h1>my list</h1>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <ListAdd
           value={grocery}
           onChange={(e) => {
@@ -107,29 +107,32 @@ const List = ({categories}) => {
             }))
             setGrocery(e.target.value)
           }}
-        />
+          />
+        <div className="button-container">
+
         {
           !match?.length ?
-            categories.map(c =>
-              <button key={c.id} onClick={(e) => {
-                e.preventDefault();
-                setFoodData(prevState => ({
-                  ...prevState,
-                  category_id: c.id
-                }))
-              }
-              }>{c.name}</button>
-            )
-            :
-            <button type="submit">submit</button>
-        }
-      </form>
-      <div>
+          categories.map((c, i) => 
+          <button style={i == 0 ? { display: "none" } : {}}key={c.id} onClick={(e) => {
+            e.preventDefault();
+            setFoodData(prevState => ({
+              ...prevState,
+              category_id: c.id
+            }))
+          }
+        }>{c.name}</button>
+        )
+        :
+        <button type="submit">submit</button>
+      }
+      </div>
+      </Form>
+      <MyList>
         {
           isLoaded ?
             categories?.map(c =>
               <React.Fragment key={c.id * 1.77}>
-                <h3 key={c.name}>{c.name}</h3>
+                <li className="category-title" key={c.name}>{c.name}</li>
                 <ul key={c.id * 3.45}>
                   {foodBank?.map(f =>
                     f.category_id == c.id ?
@@ -144,7 +147,7 @@ const List = ({categories}) => {
             )
             : <><h2>loading...</h2></>
         }
-      </div>
+      </MyList>
     </ListStyles>
   )
 }

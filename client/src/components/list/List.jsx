@@ -8,39 +8,27 @@ import { loginUser } from '../../services/auth';
 
 
 
-const List = () => {
+const List = ({categories}) => {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext)
 
-  const [categories, setCategories] = useState([])
-  const [grocery, setGrocery] = useState('')
-  const [currentList, setList] = useState([])
-  const [foodBank, setFoods] = useState([]);
-  const [match, setMatch] = useState();
+  const [grocery, setGrocery] = useState('') // current state of input
+  const [currentList, setList] = useState([]) // most recent list associated with logged in user
+  const [foodBank, setFoods] = useState([]); // all foods in database
+  const [match, setMatch] = useState(); // 
   const [updated, setUpdated] = useState(false);
   const [isLoaded, setLoaded] = useState(false);
 
 
-  const [groceryData, setGroceryData] = useState({
-    food_id: '',
-    status: ''
-  })
+  const [groceryData, setGroceryData] = useState({ food_id: '' })
 
   const [foodData, setFoodData] = useState({
     name: '',
     category_id: ''
   })
 
-  // when we add a new grocery to the list, we will search all of the foods
-  // if there is no food matching that name, we need to create one and assign it a category and name
-  // this new food item's id will be assigned to the new grocery item
-  // if the food already exists in the db, we select that as the grocery's food_id
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const data = await getAllCategories();
-      setCategories(data);
-    }
-    fetchCategories();
+
     const fetchFoods = async () => {
       const data = await getAllFoods();
       setFoods(data);
@@ -72,12 +60,23 @@ const List = () => {
   useEffect(() => {
     if (foodData.category_id !== "" && foodData.name !== "") {
       handleNewFoodSubmit()
-
     }
-  }, [foodData]);
+    if (match?.length) {
+      setGroceryData(prevState => ({
+        ...prevState,
+        food_id: match[0].id
+      }))
+    }
+  }, [foodData, match]);
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const resp = await addGroceryToList(currentList.id, groceryData);
+    setUpdated(!updated);
+    setGroceryData({
+      food_id: ''
+    })
+    setGrocery('');
   }
 
   const handleNewFoodSubmit = async () => {
@@ -110,35 +109,37 @@ const List = () => {
           }}
         />
         {
-        !match?.length ?
-          categories.map(c =>
-          <button key={c.id} onClick={(e) => {
-            e.preventDefault();
-            setFoodData(prevState => ({
-              ...prevState,
-              category_id: c.id
-            }))
-          }
-          }>{c.name}</button>
-        )
+          !match?.length ?
+            categories.map(c =>
+              <button key={c.id} onClick={(e) => {
+                e.preventDefault();
+                setFoodData(prevState => ({
+                  ...prevState,
+                  category_id: c.id
+                }))
+              }
+              }>{c.name}</button>
+            )
             :
-            <button>submit</button>
-      }
+            <button type="submit">submit</button>
+        }
       </form>
       <div>
         {
           isLoaded ?
             categories?.map(c =>
-              <React.Fragment>
-                <h3>{c.name}</h3>
+              <React.Fragment key={c.id * 1.77}>
+                <h3 key={c.name}>{c.name}</h3>
+                <ul key={c.id * 3.45}>
                   {foodBank?.map(f =>
                     f.category_id == c.id ?
                       currentList.groceries.map(g =>
                         g.food_id == f.id ?
-                          <li>{f.name}</li> : <></>
+                          <li key={f.id}>{f.name}</li> : null
                       )
-                      : <></>
+                      : null
                   )}
+                </ul>
               </React.Fragment>
             )
             : <><h2>loading...</h2></>

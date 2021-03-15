@@ -77,6 +77,7 @@ const Grocery = styled.div`
   border-radius: 5px;
   margin: 5px 0;
   text-align: center;
+  box-shadow: inset 2px 1px 14px 0 ${colors.paleLightBlue};
 
 
   .radio {
@@ -84,6 +85,16 @@ const Grocery = styled.div`
     grid-column-end: 2;
     border-right: 1px solid black;
     border-radius: 5px;
+    color: ${colors.eggplant};
+    position: relative;
+  }
+
+  .check {
+    position: absolute;
+    left: 2px;
+    bottom: 2px;
+    font-size: 30px;
+    transform: skewY(-10deg);
   }
 
 `
@@ -92,6 +103,7 @@ const GroceryItem = styled.li`
   grid-column-start: 2;
   grid-column-end: 3;
 `
+
 
 
 const Button = styled.button`

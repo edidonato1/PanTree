@@ -75,6 +75,9 @@ const List = ({ categories }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!currentList.groceries.includes) {
+
+    }
     const resp = await addGroceryToList(currentList.id, groceryData);
     setUpdated(!updated);
     setGroceryData({
@@ -113,7 +116,6 @@ const List = ({ categories }) => {
           }}
         />
         <div className="button-container">
-
           {
             !match?.length ?
               categories.map((c, i) =>

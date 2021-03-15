@@ -73,7 +73,7 @@ const Form = styled.form`
 const Grocery = styled.div`
   display: grid;
   grid-template-columns: 10% auto 10%;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-radius: 5px;
   margin: 5px 0;
   text-align: center;
@@ -83,7 +83,7 @@ const Grocery = styled.div`
   .radio {
     grid-column-start: 1;
     grid-column-end: 2;
-    border-right: 1px solid black;
+    border-right: 1px solid gray;
     border-radius: 5px;
     color: ${colors.eggplant};
     position: relative;
@@ -95,6 +95,14 @@ const Grocery = styled.div`
     bottom: 2px;
     font-size: 30px;
     transform: skewY(-10deg);
+  }
+
+  .update-list-item {
+
+  }
+
+  .drop-down {
+    transform: ${({showOptions}) => showOptions ? "rotate(180deg)" : ""};
   }
 
 `

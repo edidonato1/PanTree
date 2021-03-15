@@ -22,14 +22,14 @@ const List = ({ categories }) => {
   const [isLoaded, setLoaded] = useState(false);
 
 
-  const [groceryData, setGroceryData] = useState({ food_id: '' })
+  const [groceryData, setGroceryData] = useState({ food_id: ''})
 
   const [foodData, setFoodData] = useState({
     name: '',
     category_id: ''
   })
 
-  const icons = [0, faCarrot, faBacon, faPrescriptionBottle, faToiletPaper];
+  const icons = [faCarrot, faCarrot, faBacon, faPrescriptionBottle, faToiletPaper];
 
   useEffect(() => {
 
@@ -144,7 +144,7 @@ const List = ({ categories }) => {
                     f.category_id == c.id ?
                       currentList.groceries.map(g =>
                         g.food_id == f.id ?
-                          <ListItem key={f.id} name={f.name}/> : null
+                          <ListItem key={f.id} name={f.name} grocery={g} /> : null
                       )
                       : null
                   )}

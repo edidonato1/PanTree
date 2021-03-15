@@ -9,13 +9,17 @@ class GroceriesController < ApplicationController
   end
 
 
-  def show
-    @food = Food.find(@grocery.food_id)
-    @food.user_id = @current_user.id
+  # def show
+  #   @food = Food.find(@grocery.food_id)
+  #   @food.user_id = @current_user.id
 
-    render json: [@grocery, @food] 
-    # grocery is a temporary "instance" of food.. 
-    # rendering both gives access to information about food grocery is associated with, without having to search foods on the client side
+  #   render json: [@grocery, @food] 
+  #   # grocery is a temporary "instance" of food.. 
+  #   # rendering both gives access to information about food grocery is associated with, without having to search foods on the client side
+  # end
+
+  def show
+    render json: @grocery
   end
 
   def update 
@@ -37,5 +41,10 @@ class GroceriesController < ApplicationController
     def set_grocery
       @grocery = Grocery.find(params[:id])
     end
+
+    def grocery_params 
+      params.require(:grocery).permit(:status)
+    end
+
 
 end

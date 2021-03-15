@@ -39,6 +39,7 @@ class ListsController < ApplicationController
     if @food.save
       @grocery = Grocery.new
       @grocery.food_id = @food.id
+      @grocery.status = 1
       if @grocery.save
         @list.groceries << @grocery
         render json: @list, include: :groceries
@@ -95,7 +96,7 @@ class ListsController < ApplicationController
     end
 
     def grocery_params 
-      params.require(:grocery).permit( :food_id )
+      params.require(:grocery).permit( :food_id)
     end
 
     def food_params

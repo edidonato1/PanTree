@@ -71,10 +71,26 @@ const Form = styled.form`
 
 
 const Grocery = styled.div`
+  display: grid;
+  grid-template-columns: 10% auto 10%;
   border: 1px solid black;
   border-radius: 5px;
   margin: 5px 0;
   text-align: center;
+
+
+  .radio {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-right: 1px solid black;
+    border-radius: 5px;
+  }
+
+`
+
+const GroceryItem = styled.li`
+  grid-column-start: 2;
+  grid-column-end: 3;
 `
 
 
@@ -130,5 +146,6 @@ export {
   Form,
   MyList,
   Button,
-  Grocery
+  Grocery,
+  GroceryItem
 }

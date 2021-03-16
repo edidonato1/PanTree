@@ -102,14 +102,46 @@ const Grocery = styled.div`
   }
 
   .drop-down {
-    transform: ${({showOptions}) => showOptions ? "rotate(180deg)" : ""};
+    transform: ${({ showOptions }) => showOptions ? "rotate(180deg)" : ""};
+
   }
 
 `
 
+
+
 const GroceryItem = styled.li`
   grid-column-start: 2;
   grid-column-end: 3;
+`
+
+const Options = styled.ul`
+  .remove-me {
+    color: #DB686F;
+  }
+
+  .options-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3%;
+  }
+
+
+  .change-category-li {
+    box-shadow: 2px 2px 5px 0 ${colors.eggplant};
+    margin: 2px 2px 0 0;
+    padding-left: 5px;
+    cursor: default;
+    &:hover {
+      background: ${colors.paleGreen};
+    }
+  }
+
+  .drop-down {
+    transform: ${({ showCategories }) => showCategories ? "rotate(180deg)" : ""};
+
+  }
+
 `
 
 
@@ -167,5 +199,6 @@ export {
   MyList,
   Button,
   Grocery,
-  GroceryItem
+  GroceryItem,
+  Options
 }

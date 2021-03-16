@@ -146,7 +146,14 @@ const List = ({ categories }) => {
                     f.category_id == c.id ?
                       currentList.groceries.map(g =>
                         g.food_id == f.id ?
-                          <ListItem key={f.id} name={f.name} grocery={g} /> : null
+                          <ListItem
+                            key={f.id}
+                            name={f.name}
+                            grocery={g}
+                            categories={categories}
+                            updated={updated}
+                            setUpdated={setUpdated} />
+                          : null
                       )
                       : null
                   )}

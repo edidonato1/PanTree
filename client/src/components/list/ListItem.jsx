@@ -1,23 +1,33 @@
 import { useEffect, useState } from 'react';
 import { deleteGrocery, updateGrocery } from '../../services/groceries';
-import { Grocery, GroceryItem } from './ListStyles';
+import { Grocery, GroceryItem, Options } from './ListStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faChevronDown, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import colors from '../../css_assets/colorVars';
 
-export default function ListItem(props) {
+export default function ListItem({ grocery, categories, updated, setUpdated, name }) {
   const [showOptions, setShowOptions] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
   const [groceryData, setGroceryData] = useState({
-    status: props.grocery.status
-  })
+    status: grocery.status
+  });
 
   useEffect(() => {
     const handleChange = async () => {
-      const resp = await updateGrocery(props.grocery.id, groceryData);
+      const resp = await updateGrocery(grocery.id, groceryData);
     }
     handleChange()
-  }, [groceryData]);
 
+    if (!showOptions) {
+      setShowCategories(false);
+    }
+  }, [groceryData, showOptions]);
+
+
+  const handleDelete = () => {
+    deleteGrocery(grocery.id)
+    setUpdated(!updated);
+  }
 
   return (
     <>
@@ -31,16 +41,35 @@ export default function ListItem(props) {
               : null
           }
         </div>
-        <GroceryItem > {props.name}</GroceryItem>
+        <GroceryItem > {name}</GroceryItem>
         <div className="update-list-item" onClick={() => setShowOptions(!showOptions)}>
           <FontAwesomeIcon icon={faChevronDown} className="drop-down" />
         </div>
       </Grocery>
       {
         showOptions ?
-          <div>
-            <p>options</p>
-          </div>
+          <Options showCategories={showCategories}>
+            <div className="options-container">
+              <li>remove <FontAwesomeIcon icon={faTimesCircle} className="remove-me" onClick={handleDelete} /></li>
+              <div>
+
+                <li className="change-category">
+                  change category <FontAwesomeIcon
+                    icon={faChevronDown}
+                    className="drop-down"
+                    onClick={() => setShowCategories(!showCategories)} /></li>
+                {
+                  showCategories ?
+                    <ul>
+                      {categories.map(c =>
+                        <li className="change-category-li" key={c.id * 20.3}>{c.name}</li>
+                      )}
+                    </ul>
+                    : <></>
+                }
+              </div>
+            </div>
+          </Options>
           : <></>
       }
     </>

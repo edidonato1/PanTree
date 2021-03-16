@@ -1,5 +1,6 @@
 import Layout from '../../components/shared/layout/Layout';
 import List from '../../components/list/List';
+import LibraryLink from '../../components/home/LibraryLink';
 import { useEffect, useState, useContext } from 'react';
 import { getOneList } from '../../services/lists';
 import { getAllCategories } from '../../services/categories';
@@ -47,6 +48,8 @@ const Home = () => {
         updated={updated}
         setUpdated={setUpdated}
         categories={categories} />
+      <LibraryLink
+      />
     </Layout>
   )
 }

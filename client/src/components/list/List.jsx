@@ -22,7 +22,7 @@ const List = ({ categories }) => {
   const [isLoaded, setLoaded] = useState(false);
 
 
-  const [groceryData, setGroceryData] = useState({ food_id: ''})
+  const [groceryData, setGroceryData] = useState({ food_id: '' })
 
   const [foodData, setFoodData] = useState({
     name: '',
@@ -32,12 +32,12 @@ const List = ({ categories }) => {
   const icons = [faCarrot, faCarrot, faBacon, faPrescriptionBottle, faToiletPaper];
 
   useEffect(() => {
-
     const fetchFoods = async () => {
       const data = await getAllFoods();
       setFoods(data);
     }
     fetchFoods();
+
     if (loggedInUser?.lists !== undefined) {
       let listId = loggedInUser.lists[0].id
       const fetchList = async () => {
@@ -50,20 +50,20 @@ const List = ({ categories }) => {
   }, [loggedInUser, updated]);
 
   useEffect(() => {
-    if (categories.length && foodBank.length) {
+    if (categories.length && foodBank.length) { // avoid errors while loading foods/categories
       setTimeout((() => setLoaded(true)), 400)
     }
   }, [foodBank, categories, updated]);
 
   useEffect(() => {
     setMatch(foodBank.filter(f =>
-      f.name.toLowerCase() === grocery.toLowerCase()
+      f.name.toLowerCase() === grocery.toLowerCase() // listens for input to match existing food name to avoid duplicates in db
     ))
   }, [foodBank, grocery]);
 
   useEffect(() => {
     if (foodData.category_id !== "" && foodData.name !== "") {
-      handleNewFoodSubmit()
+      handleNewFoodSubmit() // 
     }
     if (match?.length) {
       setGroceryData(prevState => ({
@@ -117,16 +117,22 @@ const List = ({ categories }) => {
         />
         <div className="button-container">
           {
-            !match?.length ?
+            !match?.length ? // input doesn't match existing food in db, so we create a new food item
               categories.map((c, i) =>
-                <Button style={i == 0 ? { display: "none" } : {}} key={c.id} onClick={(e) => {
-                  e.preventDefault();
-                  setFoodData(prevState => ({
-                    ...prevState,
-                    category_id: c.id
-                  }))
-                }
-                }><FontAwesomeIcon  icon={icons[i]} /></Button>
+                <Button
+                  style={i == 0 ? { display: "none" } : {}}
+                  key={c.id}
+                  onClick={
+                    grocery.length ?
+                      (e) => {
+                        e.preventDefault();
+                        setFoodData(prevState => ({
+                          ...prevState,
+                          category_id: c.id
+                        }))
+                      }
+                      : null
+                  }><FontAwesomeIcon icon={icons[i]} /></Button>
               )
               :
               <div className="button-containter">

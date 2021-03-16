@@ -10,6 +10,11 @@ export const getOneFood = async id => {
   return resp.data;
 }
 
+export const updateFood = async (id, foodData) => {
+  const resp = await api.put(`/foods/${id}`, { food: foodData })
+  return resp.data;
+}
+
 export const deleteFood = async id => {
   await api.delete(`/foods/${id}`)
 }

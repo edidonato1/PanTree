@@ -126,7 +126,7 @@ const List = ({ categories }) => {
                     category_id: c.id
                   }))
                 }
-                }><div className="hidden-name">{c.name}</div><FontAwesomeIcon  icon={icons[i]} /></Button>
+                }><FontAwesomeIcon  icon={icons[i]} /></Button>
               )
               :
               <div className="button-containter">
@@ -148,7 +148,7 @@ const List = ({ categories }) => {
                         g.food_id == f.id ?
                           <ListItem
                             key={f.id}
-                            name={f.name}
+                            food={f}
                             grocery={g}
                             categories={categories}
                             updated={updated}

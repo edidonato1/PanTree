@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
 import { deleteGrocery, updateGrocery } from '../../services/groceries';
+import { updateFood } from '../../services/foods';
 import { Grocery, GroceryItem, Options } from './ListStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faChevronDown, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import colors from '../../css_assets/colorVars';
 
-export default function ListItem({ grocery, categories, updated, setUpdated, name }) {
+export default function ListItem({ grocery, categories, updated, setUpdated, food, foodBank }) {
   const [showOptions, setShowOptions] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [groceryData, setGroceryData] = useState({
     status: grocery.status
   });
+  const [foodData, setFoodData] = useState({
+    name: food.name,
+    category_id: food.category_id
+  })
 
   useEffect(() => {
     const handleChange = async () => {
@@ -18,16 +23,24 @@ export default function ListItem({ grocery, categories, updated, setUpdated, nam
     }
     handleChange()
 
+    const handleUpdate = async () => {
+      const resp = await updateFood(food.id, foodData);
+      setUpdated(!updated);
+    }
+    handleUpdate()
+
     if (!showOptions) {
       setShowCategories(false);
     }
-  }, [groceryData, showOptions]);
+  }, [groceryData, showOptions, foodData]);
 
 
   const handleDelete = () => {
     deleteGrocery(grocery.id)
     setUpdated(!updated);
   }
+
+
 
   return (
     <>
@@ -41,7 +54,7 @@ export default function ListItem({ grocery, categories, updated, setUpdated, nam
               : null
           }
         </div>
-        <GroceryItem > {name}</GroceryItem>
+        <GroceryItem > {food.name}</GroceryItem>
         <div className="update-list-item" onClick={() => setShowOptions(!showOptions)}>
           <FontAwesomeIcon icon={faChevronDown} className="drop-down" />
         </div>
@@ -62,7 +75,14 @@ export default function ListItem({ grocery, categories, updated, setUpdated, nam
                   showCategories ?
                     <ul>
                       {categories.map(c =>
-                        <li className="change-category-li" key={c.id * 20.3}>{c.name}</li>
+                        <li
+                          className="change-category-li"
+                          key={c.id * 20.3}
+                          onClick={() => setFoodData(prevState => ({
+                            ...prevState,
+                            category_id: c.id
+                          }))}
+                        >{c.name}</li>
                       )}
                     </ul>
                     : <></>

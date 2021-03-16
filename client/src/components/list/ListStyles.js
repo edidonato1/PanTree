@@ -65,7 +65,7 @@ const Form = styled.form`
     flex-wrap: wrap;
     justify-content: space-around;
     height: 60px;
-  
+
   }
 `
 

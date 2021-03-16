@@ -1,12 +1,12 @@
 import { ListStyles, ListAdd, Form, MyList, Button } from './ListStyles';
 import ListItem from './ListItem';
 import React, { useEffect, useState } from 'react';
-import { createList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
+import { createList, getOneList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBacon, faCarrot, faPrescriptionBottle, faToiletPaper } from '@fortawesome/free-solid-svg-icons';
+import { faBacon, faCarrot, faPrescriptionBottle, faToiletPaper, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-const List = ({ categories, foodBank, currentList, updated, setUpdated }) => {
+const List = ({ categories, foodBank, currentList, updated, setUpdated, setList }) => {
   const [grocery, setGrocery] = useState('') // current state of input
   const [match, setMatch] = useState(); // 
   const [isLoaded, setLoaded] = useState(false);
@@ -71,9 +71,21 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated }) => {
     }
   }
 
+  const handleCreateList = async () => {
+    const resp = await createList();
+    const fetchList = async () => {
+      const data = await getOneList(resp.id);
+      setList(data);
+      // setUpdated(!updated);
+    }
+    fetchList();
+
+  }
+
 
   return (
     <ListStyles>
+      <FontAwesomeIcon icon={faPlus} id="new-list" onClick={handleCreateList }/>
       <h1>my list</h1>
       <Form onSubmit={handleSubmit}>
         <ListAdd
@@ -119,8 +131,9 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated }) => {
               <React.Fragment key={c.id * 1.77}>
                 <li className="category-title" key={c.name}>{c.name}</li>
                 <ul key={c.id * 3.45}>
-                  {foodBank?.map(f =>
-                    f.category_id == c.id ?
+                  {
+                  foodBank?.map(f =>
+                    f.category_id == c.id && currentList.groceries.length ? 
                       currentList.groceries.map(g =>
                         g.food_id == f.id ?
                           <ListItem

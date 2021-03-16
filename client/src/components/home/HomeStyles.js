@@ -13,7 +13,7 @@ const HomeLink = styled.div`
 const Block = styled.div`
     z-index: 3;
     position: absolute;
-    right: 0;
+    right: ${props => props.right ? "0" : null};
     top: 25px;
     height: 50px;
     width: 85%;
@@ -21,7 +21,6 @@ const Block = styled.div`
     align-items: center;
     margin: 14px 0;
     justify-content: ${props => props.left ? "flex-end" : "flex-start"};
-    /* margin-left: ${props => props.right ? "40vw" : "none"}; */
     background: ${props => props.button ? colors.paleGreen : colors.lightBlue};
     transition: transform 1.2s;
 
@@ -45,6 +44,7 @@ const Block = styled.div`
 
 const BottomDiv = styled.div`
   display: flex;
+  justify-content: ${props => props.imageRight ? "flex-end" : "flex-start"};
   height: 67%;
   width: 100%;
   position: absolute;

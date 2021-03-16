@@ -1,6 +1,7 @@
 import Layout from '../../components/shared/layout/Layout';
 import List from '../../components/list/List';
 import LibraryLink from '../../components/home/LibraryLink';
+import PantryLink from '../../components/home/PantryLink';
 import { useEffect, useState, useContext } from 'react';
 import { getOneList } from '../../services/lists';
 import { getAllCategories } from '../../services/categories';
@@ -21,15 +22,19 @@ const Home = () => {
     }
     fetchFoods();
 
-    if (loggedInUser?.lists !== undefined) {
-      let listId = loggedInUser.lists[0].id
-      const fetchList = async () => {
-        const data = await getOneList(listId);
-        setList(data);
-      }
-      fetchList();
-    }
+  }, [ updated]);
 
+  useEffect(() => {
+    if (loggedInUser?.lists !== undefined) {
+      if (loggedInUser.lists.length) {
+        let listId = loggedInUser.lists[loggedInUser.lists.length - 1].id
+        const fetchList = async () => {
+          const data = await getOneList(listId);
+          setList(data);
+        }
+        fetchList();
+      }
+    }
   }, [loggedInUser, updated]);
 
   useEffect(() => {
@@ -43,13 +48,14 @@ const Home = () => {
   return (
     <Layout>
       <List
+        setList={setList}
         foodBank={foodBank}
         currentList={currentList}
         updated={updated}
         setUpdated={setUpdated}
         categories={categories} />
-      <LibraryLink
-      />
+      <PantryLink />
+      <LibraryLink />
     </Layout>
   )
 }

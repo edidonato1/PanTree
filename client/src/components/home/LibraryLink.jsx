@@ -10,7 +10,7 @@ export default function LibraryLink() {
       <BottomDiv>
         <Image
           left
-          alt="vegetables"
+          alt="rolodex"
           src="https://media.gettyimages.com/photos/card-filer-for-organizational-purposes-picture-id183415861?k=6&m=183415861&s=612x612&w=0&h=dUhWbQjilf7awK_0udl1TyqZo90ISu7ZtEH2EDtP3PE=" />
         <div className="bottom-text">
           <hr></hr>

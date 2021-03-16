@@ -40,8 +40,6 @@ export default function ListItem({ grocery, categories, updated, setUpdated, foo
     setUpdated(!updated);
   }
 
-
-
   return (
     <>
       <Grocery showOptions={showOptions}>

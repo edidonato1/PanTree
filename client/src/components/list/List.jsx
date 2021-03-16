@@ -1,7 +1,7 @@
 import { ListStyles, ListAdd, Form, MyList, Button } from './ListStyles';
 import ListItem from './ListItem';
-import React, { useContext, useEffect, useState } from 'react';
-import { createList, getOneList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
+import React, { useEffect, useState } from 'react';
+import { createList, addGroceryToList, addNewGroceryToList } from '../../services/lists';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBacon, faCarrot, faPrescriptionBottle, faToiletPaper } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,7 +16,7 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated }) => {
     category_id: ''
   })
 
-  const icons = [faCarrot, faCarrot, faBacon, faPrescriptionBottle, faToiletPaper];
+  const icons = [faCarrot, faCarrot, faBacon, faPrescriptionBottle, faToiletPaper]; // match icons to category by index when rendering buttons
 
   useEffect(() => {
     if (categories.length && foodBank.length) { // avoid errors while loading foods/categories
@@ -44,15 +44,17 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!currentList.groceries.includes) {
-
+    const found = currentList.groceries.find(g => // prevent duplicates on current list
+      g.food_id === groceryData.food_id
+    )
+    if (!found) {
+      const resp = await addGroceryToList(currentList.id, groceryData);
+      setUpdated(!updated);
+      setGroceryData({
+        food_id: ''
+      })
+      setGrocery('');
     }
-    const resp = await addGroceryToList(currentList.id, groceryData);
-    setUpdated(!updated);
-    setGroceryData({
-      food_id: ''
-    })
-    setGrocery('');
   }
 
   const handleNewFoodSubmit = async () => {

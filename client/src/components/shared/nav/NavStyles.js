@@ -53,6 +53,7 @@ const NavBar = styled.nav`
     text-decoration: none;
     text-align: center;
     margin: 0 1em;
+    padding-bottom: 1em;
     color: ${colors.paleGreen};
     width: 5em;
   }

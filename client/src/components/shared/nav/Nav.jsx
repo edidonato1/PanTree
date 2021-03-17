@@ -8,6 +8,10 @@ import colors from '../../../css_assets/colorVars';
 export default function Nav() {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext);
 
+  const active = {
+    borderBottom: `5px solid ${colors.paleGreen}`,
+    padding: "Calc(1em - 5px"
+  }
 
   return (
     <NavBar>
@@ -24,11 +28,15 @@ export default function Nav() {
           to="/home"
           className="nav-link"
           id="home-link"
-          activeStyle={{
-            borderBottom: `5px solid ${colors.paleGreen}`,
-            padding: "Calc(1em - 5px"
-          }}>
+          activeStyle={active}>
             <span>home</span>
+        </NavLink>
+        <NavLink
+          to="/library"
+          className="nav-link"
+          id="library-link"
+          activeStyle={active}>
+            <span>library</span>
           </NavLink>
       </div>
 

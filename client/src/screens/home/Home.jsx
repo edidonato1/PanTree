@@ -1,8 +1,9 @@
+import { useEffect, useState, useContext } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Layout from '../../components/shared/layout/Layout';
 import List from '../../components/list/List';
 import LibraryLink from '../../components/home/LibraryLink';
 import PantryLink from '../../components/home/PantryLink';
-import { useEffect, useState, useContext } from 'react';
 import { getOneList } from '../../services/lists';
 import { getAllCategories } from '../../services/categories';
 import { LoggedInUserContext } from '../../contexts/LoggedInUser';
@@ -46,7 +47,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <List
         setList={setList}
         foodBank={foodBank}
@@ -56,7 +57,7 @@ const Home = () => {
         categories={categories} />
       <PantryLink />
       <LibraryLink />
-    </Layout>
+    </>
   )
 }
 

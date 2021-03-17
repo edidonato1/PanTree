@@ -85,9 +85,9 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, setList 
 
   return (
     <ListStyles>
-      <div id="new-list-container" onClick={handleCreateList}>
+      <button id="new-list-container" onClick={handleCreateList}>
         <FontAwesomeIcon icon={faPlus} id="new-list" />
-      </div>
+      </button>
       <h1>my list</h1>
       <Form onSubmit={handleSubmit}>
         <ListAdd

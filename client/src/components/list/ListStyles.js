@@ -34,8 +34,8 @@ const ListStyles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 3px solid ${colors.eggplant};
     background: ${colors.paleGreen};
@@ -43,6 +43,12 @@ const ListStyles = styled.div`
     position: absolute;
     color: ${colors.eggplant};
     cursor: pointer;
+    font-size: 25px;
+
+    &:hover {
+      background: ${colors.eggplant};
+      color: ${colors.paleGreen};
+    }
   }
 
 `

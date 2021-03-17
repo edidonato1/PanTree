@@ -85,7 +85,9 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, setList 
 
   return (
     <ListStyles>
-      <FontAwesomeIcon icon={faPlus} id="new-list" onClick={handleCreateList }/>
+      <div id="new-list-container" onClick={handleCreateList}>
+        <FontAwesomeIcon icon={faPlus} id="new-list" />
+      </div>
       <h1>my list</h1>
       <Form onSubmit={handleSubmit}>
         <ListAdd
@@ -132,21 +134,21 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, setList 
                 <li className="category-title" key={c.name}>{c.name}</li>
                 <ul key={c.id * 3.45}>
                   {
-                  foodBank?.map(f =>
-                    f.category_id == c.id && currentList.groceries.length ? 
-                      currentList.groceries.map(g =>
-                        g.food_id == f.id ?
-                          <ListItem
-                            key={f.id}
-                            food={f}
-                            grocery={g}
-                            categories={categories}
-                            updated={updated}
-                            setUpdated={setUpdated} />
-                          : null
-                      )
-                      : null
-                  )}
+                    foodBank?.map(f =>
+                      f.category_id == c.id && currentList.groceries.length ?
+                        currentList.groceries.map(g =>
+                          g.food_id == f.id ?
+                            <ListItem
+                              key={f.id}
+                              food={f}
+                              grocery={g}
+                              categories={categories}
+                              updated={updated}
+                              setUpdated={setUpdated} />
+                            : null
+                        )
+                        : null
+                    )}
                 </ul>
               </React.Fragment>
             )

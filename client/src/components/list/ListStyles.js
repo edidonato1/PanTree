@@ -18,6 +18,7 @@ const ListStyles = styled.div`
   }
   h1 {
     margin: 0;
+    text-align: center;
     color: ${colors.lightBlue};
   }
 
@@ -28,6 +29,22 @@ const ListStyles = styled.div`
   ul {
     padding-left: 0;
   }
+
+  #new-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid ${colors.eggplant};
+    background: ${colors.paleGreen};
+    margin: -35px 0 0 -35px;
+    position: absolute;
+    color: ${colors.eggplant};
+    cursor: pointer;
+  }
+
 `
 
 const ListAdd = styled.input.attrs(() => ({

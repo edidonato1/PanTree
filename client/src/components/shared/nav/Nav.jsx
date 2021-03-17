@@ -37,6 +37,13 @@ export default function Nav() {
           id="library-link"
           activeStyle={active}>
             <span>library</span>
+        </NavLink>
+        <NavLink
+          to="/pantry"
+          className="nav-link"
+          id="pantry-link"
+          activeStyle={active}>
+            <span>pantry</span>
           </NavLink>
       </div>
 

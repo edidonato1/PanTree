@@ -1,10 +1,10 @@
-
+import { Block } from './PantryStyles';
 
 export default function Pantry() {
 
   return (
     <div>
-      <h2>hi this is pantry</h2>
+      {/* <Block>pantry</Block> */}
     </div>
   )
 }

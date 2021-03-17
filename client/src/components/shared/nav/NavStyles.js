@@ -13,6 +13,9 @@ const NavBar = styled.nav`
   width: 100vw;
   display: flex;
   background: ${colors.eggplant};
+  position: fixed;
+  z-index: 99;
+
 
 
   .nav-left {

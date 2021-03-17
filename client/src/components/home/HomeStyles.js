@@ -5,9 +5,12 @@ const HomeLink = styled.div`
 
  border: 1px solid gray;
  border-radius: 20px;
- width: 700px;
+ width: 100%;
+ min-width: 500px;
+ max-width: 700px;
  height: 400px;
  position: relative;
+ margin: 20px 0 0 1px;
 `
 
 const Block = styled.div`
@@ -61,6 +64,7 @@ const BottomDiv = styled.div`
 
   hr {
     width: 200%;
+    max-width: 180px;
     margin-left: -30%;
     color: black;
     border-top: .5px solid gray;
@@ -81,6 +85,8 @@ const BottomDiv = styled.div`
 
 const Image = styled.img`
 
+  width: 60%;
+  object-fit: cover;
   filter:  contrast(60%) hue-rotate(10deg) sepia(10%) opacity(90%);
   border-bottom-right-radius: ${props => props.left ? null : "inherit"};
   border-bottom-left-radius: ${props => props.right ? null : "inherit"};

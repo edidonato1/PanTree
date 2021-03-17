@@ -14,9 +14,9 @@ export default function LibraryLink() {
           src="https://media.gettyimages.com/photos/card-filer-for-organizational-purposes-picture-id183415861?k=6&m=183415861&s=612x612&w=0&h=dUhWbQjilf7awK_0udl1TyqZo90ISu7ZtEH2EDtP3PE=" />
         <div className="bottom-text">
           <hr></hr>
-          <Link>view by category </Link>
+          <p>view by category </p>
           <hr></hr>
-          <Link >view all foods</Link>
+          <p >view all foods</p>
           <hr></hr>
         </div>
       </BottomDiv>

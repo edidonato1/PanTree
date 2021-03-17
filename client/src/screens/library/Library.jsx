@@ -1,11 +1,10 @@
-
+import { Block } from './LibraryStyles';
 
 export default function Library() {
 
   return (
     <div>
-      <h2>hello i am library
-      </h2>
+      {/* <Block left>hello i am library</Block> */}
     </div>
   )
 }

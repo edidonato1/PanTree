@@ -11,7 +11,12 @@ const ListStyles = styled.div`
   width: 300px;
   padding: 20px;
   margin: 20px;
-  overflow: scroll;
+  overflow: scroll, visible;
+  z-index: 1;
+  position: relative;
+  height: Calc(100vh - 160px);
+  min-height: 300px;
+
 
   * {
     font-family: avenir;
@@ -31,6 +36,7 @@ const ListStyles = styled.div`
   }
 
   #new-list-container {
+    z-index: 3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +47,7 @@ const ListStyles = styled.div`
     background: ${colors.paleGreen};
     margin: -35px 0 0 -35px;
     position: absolute;
+
     color: ${colors.eggplant};
     cursor: pointer;
     font-size: 25px;
@@ -166,7 +173,6 @@ const Options = styled.ul`
   }
 
 `
-
 
 
 const Button = styled.button`

@@ -9,8 +9,8 @@ export default function Nav() {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext);
 
   const active = {
-    borderBottom: `5px solid ${colors.paleGreen}`,
-    padding: "Calc(1em - 5px"
+    borderBottom: `7px solid ${colors.paleGreen}`,
+    paddingBottom: "Calc(1em - 7px"
   }
 
   return (

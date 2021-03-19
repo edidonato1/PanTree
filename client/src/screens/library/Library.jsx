@@ -1,10 +1,11 @@
 import { Block } from './LibraryStyles';
+import Categories from '../../components/library/Categories';
 
 export default function Library() {
 
   return (
     <div>
-      {/* <Block left>hello i am library</Block> */}
+      <Categories />
     </div>
   )
 }

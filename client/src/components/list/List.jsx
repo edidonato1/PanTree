@@ -72,8 +72,6 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, handleCr
   }
 
 
-
-
   return (
     <ListStyles>
       <button id="new-list-container" onClick={handleCreateList}>

@@ -14,7 +14,7 @@ const NavBar = styled.nav`
   display: flex;
   background: ${colors.eggplant};
   position: fixed;
-  z-index: 99;
+  z-index: 4;
 
 
 
@@ -42,7 +42,37 @@ const NavBar = styled.nav`
   }
 
   #username {
-    margin: 0 2em 1em 0;
+    margin: 0 3em 1em 0;
+    cursor: default;
+
+    &:hover {
+      border: 2px solid ${colors.eggplant};
+      border-radius: 10px;
+      margin-bottom: Calc(1em - 6px);
+      margin-right: Calc(3em - 6px);
+      padding: 4px;
+    }
+    
+  }
+
+  #username-top {
+    background: ${colors.paleGreen};
+    width: fit-content;
+    height: fit-content;
+    z-index: 8;
+  }
+
+  #sign-out {
+    position: absolute;
+    z-index: ${({hover }) => hover ? "0" : "-1"};
+    transform: translateX(${({ hover }) => hover ? "10px" : "-20px"});
+    
+    &:hover {
+      font-size: 20px;
+      margin-top: -2px;
+    }
+
+    transition: .3s;
   }
 
 

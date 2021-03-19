@@ -1,27 +1,48 @@
 import { NavLink, Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import NavBar from './NavStyles';
 import { LoggedInUserContext } from '../../../contexts/LoggedInUser';
+import { removeToken } from '../../../services/auth';
 import colors from '../../../css_assets/colorVars';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Nav() {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext);
+
+  const [hover, setHover] = useState(false);
 
   const active = {
     borderBottom: `7px solid ${colors.paleGreen}`,
     paddingBottom: "Calc(1em - 7px"
   }
 
+  
+
   return (
-    <NavBar>
+    <NavBar hover={hover}>
       <div className="nav-left">
         <div className="logo-container">
           <Link to="/" id="logo">PanTree</Link>
         </div>
-        {loggedInUser ?
-          <div id="username">{loggedInUser.username}</div> :
-          <> </>}
+        {
+          loggedInUser ?
+            <>
+              <div id="username"
+                onMouseEnter={() => setHover(!hover)}
+                // onMouseLeave={() => setHover(false)}
+              >
+                <span id="username-top">{loggedInUser.username}</span>
+                <FontAwesomeIcon
+                  onMouseEnter={() => setHover(true)}
+                  onMouseLeave={() => setHover(false)}
+                  id="sign-out"
+                  icon={faSignOutAlt} />
+              </div>
+            </>
+            : <> </>
+        }
       </div>
       <div className="nav-right">
         <NavLink

@@ -9,6 +9,7 @@ import Pantry from './screens/pantry/Pantry';
 import { verifyUser } from './services/auth';
 import { LoggedInUserContext } from './contexts/LoggedInUser';
 
+
 function App() {
   const [loggedInUser, setLoggedInUser] = useContext(LoggedInUserContext);
   const [categories, setCategories] = useState([])
@@ -32,17 +33,21 @@ function App() {
 
   return (
     <Switch >
-      <Layout categories={categories}>
-        <Route path="/home">
+      <Route path="/home">
+        <Layout categories={categories}>
           <Home />
-        </Route>
-        <Route path="/library">
+        </Layout>
+      </Route>
+      <Route path="/library">
+        <Layout categories={categories}>
           <Library />
-        </Route>
-        <Route path="/pantry">
-          <Pantry />
-        </Route>
-      </Layout>
+        </Layout>
+      </Route>
+      <Route path="/pantry">
+        <Layout categories={categories}>
+          <Pantry/>
+        </Layout>
+      </Route>
       <Route path="/" component={LoginContainer} /> {/* this stays on bottom*/}
     </Switch>
   );

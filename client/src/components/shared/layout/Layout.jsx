@@ -2,8 +2,9 @@ import { useState, useContext, useEffect } from 'react';
 import { LayoutMain, ListContainer, RightDiv } from './LayoutStyles';
 import Nav from '../nav/Nav';
 import List from '../../../components/list/List';
-import { getOneList } from '../../../services/lists';
+import { getOneList, createList } from '../../../services/lists';
 import { getAllFoods } from '../../../services/foods';
+import { verifyUser } from '../../../services/auth';
 import { LoggedInUserContext } from '../../../contexts/LoggedInUser';
 
 export default function Layout(props) {
@@ -14,6 +15,7 @@ export default function Layout(props) {
   const [currentList, setList] = useState([]) // most recent list associated with logged in user
   const [foodBank, setFoods] = useState([]); // all foods in database
   const [updated, setUpdated] = useState(false);
+  const [updateUser, setUpdateUser] = useState(false);
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -33,9 +35,29 @@ export default function Layout(props) {
           setList(data);
         }
         fetchList();
+      } else {
+        handleCreateList()
       }
     }
   }, [loggedInUser, updated]);
+
+  useEffect(() => {
+    const handleVerify = async () => {
+      const userData = await verifyUser();
+      setLoggedInUser(userData)
+    }
+    handleVerify();
+  }, [updateUser])
+
+  const handleCreateList = async () => {
+    const resp = await createList();
+    const fetchList = async () => {
+      const data = await getOneList(resp.id);
+      setList(data);
+    }
+    fetchList();
+    setUpdateUser(!updateUser);
+  }
 
   return (
     <div>
@@ -48,7 +70,9 @@ export default function Layout(props) {
             currentList={currentList}
             updated={updated}
             setUpdated={setUpdated}
-            categories={categories} />
+            categories={categories}
+            handleCreateList={handleCreateList}
+          />
         </ListContainer>
         <RightDiv>
           {children}

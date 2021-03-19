@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import NavBar from './NavStyles';
 import { LoggedInUserContext } from '../../../contexts/LoggedInUser';
@@ -13,9 +13,18 @@ export default function Nav() {
 
   const [hover, setHover] = useState(false);
 
+  const history = useHistory();
+
   const active = {
     borderBottom: `7px solid ${colors.paleGreen}`,
     paddingBottom: "Calc(1em - 7px"
+  }
+
+  const handleLogout = () => {
+    setLoggedInUser(null);
+    localStorage.removeItem('authToken');
+    removeToken();
+    history.push('/')
   }
 
   
@@ -37,6 +46,7 @@ export default function Nav() {
                 <FontAwesomeIcon
                   onMouseEnter={() => setHover(true)}
                   onMouseLeave={() => setHover(false)}
+                  onClick={handleLogout}
                   id="sign-out"
                   icon={faSignOutAlt} />
               </div>

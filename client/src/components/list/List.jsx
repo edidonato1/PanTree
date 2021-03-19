@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBacon, faCarrot, faPrescriptionBottle, faToiletPaper, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-const List = ({ categories, foodBank, currentList, updated, setUpdated, setList }) => {
+const List = ({ categories, foodBank, currentList, updated, setUpdated, handleCreateList }) => {
   const [grocery, setGrocery] = useState('') // current state of input
   const [match, setMatch] = useState(); // 
   const [isLoaded, setLoaded] = useState(false);
@@ -71,16 +71,7 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, setList 
     }
   }
 
-  const handleCreateList = async () => {
-    const resp = await createList();
-    const fetchList = async () => {
-      const data = await getOneList(resp.id);
-      setList(data);
-      // setUpdated(!updated);
-    }
-    fetchList();
 
-  }
 
 
   return (
@@ -134,6 +125,7 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, setList 
                 <li className="category-title" key={c.name}>{c.name}</li>
                 <ul key={c.id * 3.45}>
                   {
+                    currentList.groceries ? 
                     foodBank?.map(f =>
                       f.category_id == c.id && currentList.groceries.length ?
                         currentList.groceries.map(g =>
@@ -148,7 +140,9 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, setList 
                             : null
                         )
                         : null
-                    )}
+                      )
+                    : null
+                  }
                 </ul>
               </React.Fragment>
             )

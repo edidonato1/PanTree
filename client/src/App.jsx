@@ -40,7 +40,7 @@ function App() {
       </Route>
       <Route path="/library">
         <Layout categories={categories}>
-          <Library />
+          <Library categories={categories}/>
         </Layout>
       </Route>
       <Route path="/pantry">

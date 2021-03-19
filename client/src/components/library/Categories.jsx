@@ -1,26 +1,41 @@
 import { useEffect, useState } from 'react';
 import CategoryLink from './CategoryLink';
+import Category from './Category';
 import { getAllCategories } from '../../services/categories';
 
-export default function Categories() {
-  const [categories, setCategories] = useState([]);
+export default function Categories({categories, foods}) {
+
+  const [currentCategory, setCurrentCategory] = useState(null)
+  const [currentFoods, setCurrentFoods] = useState(foods)
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const resp = await getAllCategories();
-      setCategories(resp);
+    const filterFoods = () => {
+        setCurrentFoods(foods.filter(f =>
+          f.category_id === currentCategory.id
+        ).sort((a, b) => {
+          let textA = a.name.toUpperCase();
+          let textB = b.name.toUpperCase();
+          return ((textA < textB) ? -1 : (textA > textB) ? 1 : 0);
+        })
+      )
     }
-    fetchCategories();
-  }, []);
+    filterFoods();
+  }, [currentCategory]);
 
   return (
     <>
-      {
+      {currentCategory ?
+        <Category category={currentCategory}/>
+        :
         categories?.map((c, i) => 
           <CategoryLink
+            key={c.id}
+            category={c}
             name={c.name}
             image={c.img_url}
-            orientation={i % 2 === 0 ? "right" : "left"} />
+            orientation={i % 2 === 0 ? "right" : "left"}
+            setCurrentCategory={setCurrentCategory}
+          />
           )
       }
       

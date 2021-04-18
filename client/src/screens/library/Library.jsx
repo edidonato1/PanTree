@@ -1,7 +1,10 @@
-import { Block } from './LibraryStyles';
 import { useEffect, useState } from 'react';
 import { getAllFoods } from '../../services/foods';
 import Categories from '../../components/library/Categories';
+import {
+  Block,
+  LibraryMain
+} from './LibraryStyles';
 
 export default function Library({ categories }) {
   const [foods, setFoods] = useState([])
@@ -15,8 +18,8 @@ export default function Library({ categories }) {
   }, []);
 
   return (
-    <div>
+    <LibraryMain>
       <Categories foods={foods} categories={categories}/>
-    </div>
+    </LibraryMain>
   )
 }

@@ -71,7 +71,6 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, handleCr
     }
   }
 
-
   return (
     <ListStyles>
       <button id="new-list-container" onClick={handleCreateList}>
@@ -91,18 +90,18 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, handleCr
         />
         <div className="button-container">
           {
-            !match?.length ? // input doesn't match existing food in db, so we create a new food item
-              categories.map((c, i) =>
+            !match?.length
+              ? categories.map(({id}, i) =>
                 <Button
                   style={i == 0 ? { display: "none" } : {}}
-                  key={c.id}
+                  key={id}
                   onClick={
                     grocery.length ?
                       (e) => {
                         e.preventDefault();
                         setFoodData(prevState => ({
                           ...prevState,
-                          category_id: c.id
+                          category_id: id
                         }))
                       }
                       : null
@@ -117,8 +116,8 @@ const List = ({ categories, foodBank, currentList, updated, setUpdated, handleCr
       </Form>
       <MyList>
         {
-          isLoaded ?
-            categories?.map(c =>
+          isLoaded
+            ? categories?.map(c =>
               <React.Fragment key={c.id * 1.77}>
                 <li className="category-title" key={c.name}>{c.name}</li>
                 <ul key={c.id * 3.45}>

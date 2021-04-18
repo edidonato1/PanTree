@@ -46,11 +46,14 @@ export default function Register({
     setTimeout((() => { history.push(location) }), 2000)
   }
 
-
   return (
     <div>
       <small className="switch">already have an account?
-        <span className="switch-link" onClick={() => handleClick('/login')}> log in</span>
+        <span
+          className="switch-link"
+          onClick={() => handleClick('/login')}
+        > log in
+        </span>
       </small>
       <form
         className="auth"
@@ -81,7 +84,8 @@ export default function Register({
             onChange={handleChange}
           />
         </Block>
-        <Block left
+        <Block
+          left
           barEnter={barEnter}
           margin={!passwordMatch ? "12px 0" : "14px 0"}
           style={{

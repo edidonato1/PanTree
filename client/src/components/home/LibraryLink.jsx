@@ -5,7 +5,6 @@ export default function LibraryLink() {
   
   return (
     <HomeLink>
-
       <Block right><h2 className="title-link right">library</h2></Block>
       <BottomDiv>
         <Image
@@ -20,7 +19,6 @@ export default function LibraryLink() {
           <hr></hr>
         </div>
       </BottomDiv>
-
     </HomeLink>
     
   )

@@ -2,46 +2,45 @@ import styled from 'styled-components';
 import colors from '../../css_assets/colorVars';
 
 const HomeLink = styled.div`
-
- border: 1px solid gray;
- border-radius: 20px;
- width: 100%;
- min-width: 500px;
- max-width: 700px;
- height: 400px;
- position: relative;
- margin: 20px 0 0 1px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 100%;
+  min-width: 500px;
+  max-width: 700px;
+  height: 400px;
+  position: relative;
+  margin: 20px 0 0 1px;
 `
 
 const Block = styled.div`
-    z-index: 3;
-    position: absolute;
-    right: ${props => props.right ? "0" : null};
-    top: 25px;
-    height: 50px;
-    width: 85%;
-    display: flex;
-    align-items: center;
-    margin: 14px 0;
-    justify-content: ${props => props.left ? "flex-end" : "flex-start"};
-    background: ${props => props.button ? colors.paleGreen : colors.lightBlue};
-    transition: transform 1.2s;
+  z-index: 3;
+  position: absolute;
+  right: ${props => props.right ? "0" : null};
+  top: 25px;
+  height: 50px;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  margin: 14px 0;
+  justify-content: ${props => props.left ? "flex-end" : "flex-start"};
+  background: ${props => props.button ? colors.paleGreen : colors.lightBlue};
+  transition: transform 1.2s;
 
-    &:focus-within {
-      background: ${props => props.button ? colors.paleGreen : colors.paleLightBlue};
-    }
+  &:focus-within {
+    background: ${props => props.button ? colors.paleGreen : colors.paleLightBlue};
+  }
 
-    .title-link {
-      font-family: avenir;
-      font-weight: 400;
-      margin: 10px;
-      padding: 0 5px;
-       &:hover {
-        cursor: pointer;
-        border: 2px solid white;
-        margin: 8px;
-       }
-    }
+  .title-link {
+    font-family: avenir;
+    font-weight: 400;
+    margin: 10px;
+    padding: 0 5px;
+      &:hover {
+      cursor: pointer;
+      border: 2px solid white;
+      margin: 8px;
+      }
+  }
 
 `
 
@@ -84,7 +83,6 @@ const BottomDiv = styled.div`
   `
 
 const Image = styled.img`
-
   width: 60%;
   object-fit: cover;
   filter:  contrast(60%) hue-rotate(10deg) sepia(10%) opacity(90%);

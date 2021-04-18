@@ -47,8 +47,8 @@ export default function ListItem({ grocery, categories, updated, setUpdated, foo
           onClick={() => setGroceryData({ status: groceryData.status !== 2 ? 2 : 1 })}
           className="radio">
           {
-            groceryData.status === 2 ?
-              <FontAwesomeIcon icon={faCheck} className="check" />
+            groceryData.status === 2
+              ? <FontAwesomeIcon icon={faCheck} className="check" />
               : null
           }
         </div>
@@ -63,24 +63,26 @@ export default function ListItem({ grocery, categories, updated, setUpdated, foo
             <div className="options-container">
               <li>remove <FontAwesomeIcon icon={faTimesCircle} className="remove-me" onClick={handleDelete} /></li>
               <div>
-
                 <li className="change-category">
-                  change category <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className="drop-down"
-                    onClick={() => setShowCategories(!showCategories)} /></li>
+                  change category &nbsp;
+                  	<FontAwesomeIcon
+                      icon={faChevronDown}
+                      className="drop-down"
+                      onClick={() => setShowCategories(!showCategories)} />
+                </li>
                 {
-                  showCategories ?
+                  showCategories
+                    ?
                     <ul>
-                      {categories.map(c =>
+                      {categories.map(({name, id}) =>
                         <li
                           className="change-category-li"
-                          key={c.id * 20.3}
+                          key={id * 20.3}
                           onClick={() => setFoodData(prevState => ({
                             ...prevState,
-                            category_id: c.id
+                            category_id: id
                           }))}
-                        >{c.name}</li>
+                        >{name}</li>
                       )}
                     </ul>
                     : <></>

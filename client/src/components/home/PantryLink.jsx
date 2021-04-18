@@ -8,12 +8,11 @@ export default function PantryLink() {
   
   return (
     <HomeLink>
-
       <Block left><h2 className="title-link left">pantry</h2></Block>
       <BottomDiv imageRight>
         <div className="bottom-text">
           <p>expired items</p>
-          <p>total items</p>
+          <p> items</p>
         </div>
         <Image
           right

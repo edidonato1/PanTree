@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import CategoryLink from './CategoryLink';
 import Category from './Category';
 import { getAllCategories } from '../../services/categories';
+import {
+  Block,
+  CategoryLib
+} from './Library Styles';
 
 export default function Categories({categories, foods}) {
 
@@ -11,7 +15,7 @@ export default function Categories({categories, foods}) {
   useEffect(() => {
     const filterFoods = () => {
         setCurrentFoods(foods.filter(f =>
-          f.category_id === currentCategory.id
+          f.category_id === currentCategory?.id
         ).sort((a, b) => {
           let textA = a.name.toUpperCase();
           let textB = b.name.toUpperCase();
@@ -23,22 +27,23 @@ export default function Categories({categories, foods}) {
   }, [currentCategory]);
 
   return (
-    <>
-      {currentCategory ?
-        <Category category={currentCategory}/>
-        :
-        categories?.map((c, i) => 
-          <CategoryLink
-            key={c.id}
-            category={c}
-            name={c.name}
-            image={c.img_url}
-            orientation={i % 2 === 0 ? "right" : "left"}
-            setCurrentCategory={setCurrentCategory}
-          />
+    <CategoryLib>
+      { currentCategory && <button onClick={() => setCurrentCategory(null)}>back </button> }
+      <div></div>
+      { currentCategory
+        ? <Category category={ currentCategory }/>
+        : categories?.map((c, i) => 
+            <CategoryLink
+              key={c.id}
+              category={c}
+              name={c.name}
+              image={c.img_url}
+              orientation={i % 2 === 0 ? "right" : "left"}
+              setCurrentCategory={setCurrentCategory}
+            />
           )
       }
       
-      </>
+    </CategoryLib>
   )
 }

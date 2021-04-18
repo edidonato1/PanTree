@@ -3,11 +3,14 @@ import { useHistory } from 'react-router-dom';
 import { Input, Block, Button } from './InputStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
 import colors from '../../css_assets/colorVars'
 
-
-const Login = ({ handleLogin, setPageToggle, barEnter, setBarEnter }) => {
+const Login = ({
+  handleLogin,
+  setPageToggle,
+  barEnter,
+  setBarEnter
+}) => {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -36,7 +39,11 @@ const Login = ({ handleLogin, setPageToggle, barEnter, setBarEnter }) => {
 
   return (
     <div>
-      <small className="switch">need an account? <span className="switch-link" onClick={() => handleClick('/register')}>sign up</span></small>
+      <small className="switch">need an account?
+        <span
+          className="switch-link"
+          onClick={() => handleClick('/register')}> sign up</span>
+      </small>
       <form
         className="auth"
         id="login"

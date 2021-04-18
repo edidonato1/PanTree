@@ -132,8 +132,8 @@ const Grocery = styled.div`
   }
 
   .drop-down {
-    transform: ${({ showOptions }) => showOptions ? "rotate(180deg)" : ""};
-
+    transform: ${({ showOptions }) => showOptions ? "rotateX(180deg)" : ""};
+    transition: 700ms;
   }
 
 `
@@ -156,7 +156,6 @@ const Options = styled.ul`
     padding: 0 3%;
   }
 
-
   .change-category-li {
     box-shadow: 2px 2px 5px 0 ${colors.eggplant};
     margin: 2px 2px 0 0;
@@ -168,12 +167,11 @@ const Options = styled.ul`
   }
 
   .drop-down {
-    transform: ${({ showCategories }) => showCategories ? "rotate(180deg)" : ""};
-
+    transform: ${({ showCategories }) => showCategories ? "rotateX(180deg)" : ""};
+    transition: 700ms;
   }
 
 `
-
 
 const Button = styled.button`
   font-size: 30px;

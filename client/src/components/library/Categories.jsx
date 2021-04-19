@@ -5,7 +5,7 @@ import { getAllCategories } from '../../services/categories';
 import {
   Block,
   CategoryLib
-} from './Library Styles';
+} from './LibraryStyles';
 
 export default function Categories({categories, foods}) {
 

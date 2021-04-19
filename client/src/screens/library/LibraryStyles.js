@@ -4,7 +4,6 @@ import colors from '../../css_assets/colorVars';
 const LibraryMain = styled.div`
   width: 90%;
   min-width: 700px;
-
   display: flex;
   flex-direction: column;
 `

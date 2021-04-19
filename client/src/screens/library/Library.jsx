@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAllFoods } from '../../services/foods';
+import Selector from './Selector'
 import Categories from '../../components/library/Categories';
 import {
   Block,
@@ -8,6 +9,7 @@ import {
 
 export default function Library({ categories }) {
   const [foods, setFoods] = useState([])
+  const [selection, setSelection] = useState('all')
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -19,6 +21,7 @@ export default function Library({ categories }) {
 
   return (
     <LibraryMain>
+      <Selector selection={selection} setSelection={setSelection}/>
       <Categories foods={foods} categories={categories}/>
     </LibraryMain>
   )

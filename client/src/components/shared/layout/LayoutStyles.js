@@ -14,7 +14,6 @@ const ListContainer = styled.div`
   display: flex;
   justify-content: center;
   position: fixed;
-  /* background: green; */
 `
 
 const RightDiv = styled.div`
@@ -23,9 +22,7 @@ const RightDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px 20px 0;
 
-  /* background: green; */
 `
 
 export {

@@ -38,7 +38,7 @@ export default function Categories({categories, foods}) {
               category={c}
               name={c.name}
               image={c.img_url}
-              orientation={i % 2 === 0 ? "right" : "left"}
+              orientation={i % 2 === 0 ? "left" : "right"}
               setCurrentCategory={setCurrentCategory}
             />
           )

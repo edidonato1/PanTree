@@ -1,37 +1,38 @@
 import { useEffect, useState } from 'react';
 import CategoryLink from './CategoryLink';
 import Category from './Category';
-import { getAllCategories } from '../../services/categories';
-import {
-  Block,
-  CategoryLib
-} from './LibraryStyles';
+import { CategoryLib } from './LibraryStyles';
 
-export default function Categories({categories, foods}) {
 
-  const [currentCategory, setCurrentCategory] = useState(null)
-  const [currentFoods, setCurrentFoods] = useState(foods)
+export default function Categories({
+  categories,
+  currentCategory,
+  currentFoods,
+  setCurrentFoods,
+  foods,
+  setCurrentCategory
+}) {
+
+  const category = categories.filter(c => c.name === currentCategory)[0];
 
   useEffect(() => {
-    const filterFoods = () => {
-        setCurrentFoods(foods.filter(f =>
-          f.category_id === currentCategory?.id
-        ).sort((a, b) => {
+    setCurrentFoods(
+      foods.filter(food => food.category_id === category?.id)
+        .sort((a, b) => {
           let textA = a.name.toUpperCase();
           let textB = b.name.toUpperCase();
-          return ((textA < textB) ? -1 : (textA > textB) ? 1 : 0);
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         })
-      )
-    }
-    filterFoods();
+    );
   }, [currentCategory]);
 
   return (
     <CategoryLib>
-      { currentCategory && <button onClick={() => setCurrentCategory(null)}>back </button> }
-      <div></div>
       { currentCategory
-        ? <Category category={ currentCategory }/>
+        ? <Category
+            currentFoods={currentFoods}
+            category={category}
+          />
         : categories?.map((c, i) => 
             <CategoryLink
               key={c.id}

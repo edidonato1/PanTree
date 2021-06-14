@@ -6,6 +6,8 @@ const Main = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 20px;
+  font-family: avenir;
 `
 const Ul = styled.ul`
   display: flex;
@@ -14,7 +16,7 @@ const Ul = styled.ul`
   list-style-type: none;
   width: 250px;
   cursor: default;
-
+  height: 20px;
 `
 const Slider = styled.div`
   width: 250px;
@@ -26,34 +28,52 @@ const Slider = styled.div`
 const Bar = styled.div`
   height: 3px;
   width: 100px;
+  width: 100%;
   background: ${colors.lightBlue};
 `
 const LiContainer = styled.span`
   width: 50%;
   display: flex;
   justify-content: center;
-`
+  transition: 600ms;
+  cursor: pointer;
+  ${props => !props.sliderBar && !props.isCurrentSelection &&
+`  &:hover {
+    margin-bottom: -19px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid ${colors.paleLightBlue};
+  }`
+}
+  `
 
 
-const Selector = ({selection, setSelection}) => {
+const Selector = ({selection, setSelection, setCurrentCategory}) => {
 
   return (
     <Main>
       <div style={{width: "250px"}}>
         <Ul>
-          <LiContainer>
-            <li onClick={() => setSelection("categories")}>
+          <LiContainer
+            isCurrentSelection={selection === 'categories'}
+            onClick={() => {
+              setSelection("categories")
+              setCurrentCategory(null)
+            }}
+          >
+            <li >
               categories
             </li>
           </LiContainer>
-          <LiContainer>
-            <li onClick={() => setSelection("all")}>
+          <LiContainer
+            isCurrentSelection={selection === 'all'}
+            onClick={() => setSelection("all")}>
+            <li >
               all
             </li>
           </LiContainer>
         </Ul>
         <Slider selection={selection}>
-          <LiContainer>
+          <LiContainer sliderBar>
             <Bar></Bar>
           </LiContainer>
         </Slider>

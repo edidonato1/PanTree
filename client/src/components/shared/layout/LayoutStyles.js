@@ -6,6 +6,7 @@ const LayoutMain = styled.div`
   grid-template-columns: 400px auto;
   overflow: hidden;
   padding-top: 90px;
+  font-family: avenir;
 `
 
 const ListContainer = styled.div`
